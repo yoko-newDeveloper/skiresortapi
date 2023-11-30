@@ -1,9 +1,11 @@
+# 同じ名前のテーブルがあれば削除
 DROP TABLE IF EXISTS skiresortapi
 
 CREATE TABLE skiresortapi (
   id int unsigned AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL,
-  area VARCHAR(100) NOT NULL,
+  name VARCHAR(20) NOT NULL,
+  area VARCHAR(20) NOT NULL,
+  impression VARCHAR(100) NOT NULL,
   PRIMARY KEY(id)
 );
 
