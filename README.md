@@ -1,4 +1,4 @@
-# skiresortapi
+# skiresortapiアプリケーション概要
 スキー場における名称・エリア・特徴についてのCRUDアプリケーション及びテスト
 
 # 存在しないidを指定した場合404エラーを返す
@@ -31,11 +31,23 @@
 | 3 | idのErrorHandling | アプリケーションの安定性と信頼性を向上させるために重要な要素であり、早い段階で実装するべきと考えたため |
 | | |
 | 4 | Update | Createした仮データを完成させるため |
-| 5 | nameのErrorHandling | 早い段階で実装すべきだが、Update作成後にテストするため |
+| 5 | nameのErrorHandling | 早い段階で実装すべきだが、Update作成後にテストする必要があるため |
 | 6 | Delete | 実装予定機能が完了してからDeleteするため |
 
 ## curlコマンド
+### 正常確認
+  
+- 取得確認
+
+`-X GET http://localhost:8080/skiresorts -i`
+
+### 例外確認
+  
+- 存在しないID９９を指定
+
 `curl http://localhost:8080/skiresorts/99 -i`
+
+- 存在しないID５５を指定
 
 `curl http://localhost:8080/skiresorts/55 -i`
 
