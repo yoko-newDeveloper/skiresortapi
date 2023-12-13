@@ -12,13 +12,13 @@ import java.util.Optional;
 @Mapper
 public interface SkiresortMapper {
 
-    @Select("SELECT * FROM skiresortapi")
+    @Select("SELECT * FROM skiresort")
     List<Skiresort> findAll();
 
-    @Select("SELECT * FROM skiresortapi WHERE id = #{id}")
+    @Select("SELECT * FROM skiresort WHERE id = #{id}")
     Optional<Skiresort> findById(int id);
 
-    @Insert("INSERT INTO skiresortapi (name, area, impression) VALUES (#{name}, #{area}, #{impression})")
+    @Insert("INSERT INTO skiresort (name, area, impression) VALUES (#{name}, #{area}, #{impression})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertSkiresort(Skiresort skiresort);
 }
