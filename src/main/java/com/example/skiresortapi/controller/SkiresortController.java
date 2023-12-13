@@ -1,12 +1,25 @@
 package com.example.skiresortapi.controller;
 
+import com.example.skiresortapi.controller.form.SkiresortCreateForm;
 import com.example.skiresortapi.controller.response.SkiresortResponse;
 import com.example.skiresortapi.entity.Skiresort;
+import com.example.skiresortapi.exception.ResourceNotFoundException;
 import com.example.skiresortapi.service.SkiresortService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class SkiresortController {
@@ -21,5 +34,40 @@ public class SkiresortController {
         List<Skiresort> skiresorts = skiresortService.findAll();
         List<SkiresortResponse> skiresortResponses = skiresorts.stream().map(SkiresortResponse::new).toList();
         return skiresortResponses;
+    }
+
+    @GetMapping("/skiresorts/{id}")
+    public SkiresortResponse getSkiresortById(@PathVariable("id") int id) {
+        Skiresort skiresort = skiresortService.findById(id);
+        return new SkiresortResponse(skiresort);
+    }
+
+    @ExceptionHandler(value = ResourceNotFoundException.class)
+    public ResponseEntity<Map<String, String>> noResourceFound(
+            ResourceNotFoundException e, HttpServletRequest request) {
+
+        Map<String, String> body = Map.of(
+                "timestamp", ZonedDateTime.now().toString(),
+                "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
+                "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+                "message", e.getMessage(),
+                "path", request.getRequestURI());
+
+        // 404エラーを返す
+        return new ResponseEntity(body, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/skiresorts")
+    public ResponseEntity<SkiresortResponse> createSkiresort(@RequestBody SkiresortCreateForm skiresortCreateForm) {
+        Skiresort skiresort = skiresortService.createSkiresort(skiresortCreateForm);
+
+        // skiresortを作成する処理
+        SkiresortResponse skiresortResponse = new SkiresortResponse(skiresort);
+        URI url = UriComponentsBuilder.fromUriString("http://localhost8080")
+                .path("/skiresorts/{id}")
+                .buildAndExpand(skiresort.getId())
+                .toUri();
+        return ResponseEntity.created(url).body(skiresortResponse);
+
     }
 }

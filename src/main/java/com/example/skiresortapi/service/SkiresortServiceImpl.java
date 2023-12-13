@@ -2,10 +2,12 @@ package com.example.skiresortapi.service;
 
 import com.example.skiresortapi.controller.form.SkiresortCreateForm;
 import com.example.skiresortapi.entity.Skiresort;
+import com.example.skiresortapi.exception.ResourceNotFoundException;
 import com.example.skiresortapi.mapper.SkiresortMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkiresortServiceImpl implements SkiresortService {
@@ -25,7 +27,8 @@ public class SkiresortServiceImpl implements SkiresortService {
 
     @Override
     public Skiresort findById(int id) {
-        return skiresortMapper.findById(id);
+        Optional<Skiresort> skiresort = this.skiresortMapper.findById(id);
+        return skiresort.orElseThrow(() -> new ResourceNotFoundException("resource not found"));
     }
 
     @Override
