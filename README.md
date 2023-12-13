@@ -5,14 +5,20 @@
 
 ## 実装内容
 
-ブランチ：#1_feature/crudapi
+ブランチ：feature_#1/database
+| 実装済み | 内容 |
+| ---- | ---- |
+| database | database周りを作成 |
+
+
+ブランチ：feature_#３/read
 | 実装済み | 内容 |
 | ---- | ---- |
 | Read | skiresortテーブルの全データを取得する |
 | Read(id)| 指定した既存idのデータを取得する |
 | Create | 新規id5を作成 |
 
-ブランチ：#3_feature/errorHandling
+ブランチ：feature_#5/errorHandling
 | 今回の実装 | 内容 |
 | ---- | ---- |
 | ErrorHandling | 存在しないidを指定して取得する例外処理 |
