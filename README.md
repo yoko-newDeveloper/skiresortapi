@@ -19,7 +19,7 @@
 |----------|-------------------------|
 | Read     | skiresortテーブルの全データを取得する |
 | Read(id) | 指定した既存idのデータを取得する       |
-| Create   | 新規id5を作成                |
+| Create   | 新規id5を作成(仮データ)          |
 
 ブランチ：feature_#5/errorHandling
 
