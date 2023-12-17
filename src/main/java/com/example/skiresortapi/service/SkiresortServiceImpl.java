@@ -43,4 +43,15 @@ public class SkiresortServiceImpl implements SkiresortService {
         skiresortMapper.insertSkiresort(skiresort);
         return skiresort;
     }
+
+    @Override
+    public void updateSkiresort(int id, String name, String area, String impression) {
+        Skiresort skiresort = this.skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("resource not found"));
+        skiresort.setName(name);
+        skiresort.setArea(area);
+        skiresort.setImpression(impression);
+
+        this.skiresortMapper.updateSkiresort(skiresort);
+    }
+
 }

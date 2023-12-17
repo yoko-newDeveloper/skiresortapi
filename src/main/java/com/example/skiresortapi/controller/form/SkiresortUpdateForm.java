@@ -2,26 +2,24 @@ package com.example.skiresortapi.controller.form;
 
 import org.jetbrains.annotations.NotNull;
 
-public class SkiresortCreateForm {
+public class SkiresortUpdateForm {
+
     @NotNull
-    private String name;
+    private final String name;
     @NotNull
     private String area;
     @NotNull
     private String impression;
 
-    public SkiresortCreateForm(String name, String area, String impression) {
+    public SkiresortUpdateForm(String name, String area, String impression) {
         this.name = name;
         this.area = area;
         this.impression = impression;
     }
 
+    // skiresortUpdateFormクラスのインスタンスからidを取得するため引数なし
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getArea() {
@@ -33,11 +31,10 @@ public class SkiresortCreateForm {
     }
 
     public String getImpression() {
-        return this.impression;
+        return impression;
     }
 
     public void setImpression(String impression) {
-
         this.impression = impression;
     }
 }
