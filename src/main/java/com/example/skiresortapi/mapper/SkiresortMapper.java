@@ -24,6 +24,6 @@ public interface SkiresortMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertSkiresort(Skiresort skiresort);
 
-    @Update("UPDATE skiresort SET name = #{name}, area = #{area}, impression = #{impressiom} WHERE id = #{id}")
+    @Update("UPDATE skiresort SET name = #{name}, area = #{area}, impression = #{impression} WHERE id = #{id}")
     void updateSkiresort(Skiresort skiresort);
 }
