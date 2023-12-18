@@ -2,10 +2,10 @@ package com.example.skiresortapi.entity;
 
 public class Skiresort {
 
-    private final int id;
-    private final String name;
-    private final String area;
-    private final String impression;
+    private int id;
+    private String name;
+    private String area;
+    private String impression;
 
     public Skiresort(int id, String name, String area, String impression) {
         this.id = id;
@@ -15,18 +15,35 @@ public class Skiresort {
     }
 
     public int getId() {
-        return id;
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getArea() {
         return area;
     }
 
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+
     public String getImpression() {
         return impression;
+    }
+
+    public void setImpression(String impression) {
+        this.impression = impression;
     }
 }
