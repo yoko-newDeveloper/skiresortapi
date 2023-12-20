@@ -1,6 +1,6 @@
 package com.example.skiresortapi.controller.form;
 
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class SkiresortCreateForm {
     @NotNull

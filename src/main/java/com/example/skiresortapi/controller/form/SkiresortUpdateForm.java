@@ -1,6 +1,6 @@
 package com.example.skiresortapi.controller.form;
 
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class SkiresortUpdateForm {
 
@@ -17,7 +17,7 @@ public class SkiresortUpdateForm {
         this.impression = impression;
     }
 
-    // skiresortUpdateFormクラスのインスタンスからidを取得するため引数なし
+    // SkiresortUpdateFormクラスのインスタンスからidを取得するため引数なし
     public String getName() {
         return name;
     }
