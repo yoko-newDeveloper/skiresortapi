@@ -29,11 +29,17 @@
 
 ブランチ：feature_#7/update
 
-| 機能            | 説明                         |
-|---------------|----------------------------|
-| Update        | ID5のname,impressionデータ更新する |
-| Delete        | IDを指定して1レコードを削除する          |
-| ErrorHandling | nameに対する制御                 |
+| 機能     | 説明                         |
+|--------|----------------------------|
+| Update | ID5のname,impressionデータ更新する |
+|
+| Delete | IDを指定して1レコードを削除する          |
+
+ブランチ：feature_#9/exception
+
+| 機能            | 説明         |
+|---------------|------------|
+| ErrorHandling | nameに対する制御 |
 
 ## 実装順理由
 

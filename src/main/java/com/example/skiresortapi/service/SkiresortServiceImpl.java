@@ -53,5 +53,4 @@ public class SkiresortServiceImpl implements SkiresortService {
 
         this.skiresortMapper.updateSkiresort(skiresort);
     }
-
 }

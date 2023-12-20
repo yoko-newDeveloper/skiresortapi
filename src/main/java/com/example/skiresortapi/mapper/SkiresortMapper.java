@@ -19,7 +19,7 @@ public interface SkiresortMapper {
     @Select("SELECT * FROM skiresort WHERE id = #{id}")
     Optional<Skiresort> findById(int id);
 
-    @Insert("INSERT INTO skiresort (name, area, impression) VALUES (#{name}, #{area}, #{impression})")
+    @Insert("INSERT INTO skiresort (id, name, area, impression) VALUES (#{id}, #{name}, #{area}, #{impression})")
     // idを自動生成する
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertSkiresort(Skiresort skiresort);
