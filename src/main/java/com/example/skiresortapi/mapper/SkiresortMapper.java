@@ -1,6 +1,7 @@
 package com.example.skiresortapi.mapper;
 
 import com.example.skiresortapi.entity.Skiresort;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -26,4 +27,7 @@ public interface SkiresortMapper {
 
     @Update("UPDATE skiresort SET name = #{name}, area = #{area}, impression = #{impression} WHERE id = #{id}")
     void updateSkiresort(Skiresort skiresort);
+
+    @Delete("DELETE skiresort FROM skiresort WHERE id = #{id}")
+    void deleteSkiresort(int id);
 }
