@@ -53,4 +53,12 @@ public class SkiresortServiceImpl implements SkiresortService {
 
         this.skiresortMapper.updateSkiresort(skiresort);
     }
+
+    @Override
+    public void deleteSkiresort(int id) {
+        // 指定されたIDが見つからない場合に例外をスローする
+        // skiresort変数に格納せずに、直接skiresortMapper.findById(id)の結果を返す
+        skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("resource not found"));
+        skiresortMapper.deleteSkiresort(id);
+    }
 }

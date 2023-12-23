@@ -7,13 +7,13 @@
 
 ## 実装内容
 
-ブランチ：feature_#1/database
+ブランチ：feature_1/database
 
 | 機能       | 説明            |
 |----------|---------------|
 | database | database周りを作成 |
 
-ブランチ：feature_#３/read
+ブランチ：feature_３/read
 
 | 機能       | 説明                      |
 |----------|-------------------------|
@@ -21,13 +21,13 @@
 | Read(id) | 指定した既存idのデータを取得する       |
 | Create   | 新規id5を作成(仮データ)          |
 
-ブランチ：feature_#5/errorHandling
+ブランチ：feature_5/errorHandling
 
 | 機能            | 説明                   |
 |---------------|----------------------|
 | ErrorHandling | 存在しないidを指定して取得する例外処理 |
 
-ブランチ：feature_#7/update
+ブランチ：feature_7/update
 
 | 機能     | 説明                         |
 |--------|----------------------------|
@@ -35,11 +35,16 @@
 |
 | Delete | IDを指定して1レコードを削除する          |
 
-ブランチ：feature_#9/exception
+ブランチ：feature_9/exception
 
 | 機能            | 説明         |
 |---------------|------------|
 | ErrorHandling | nameに対する制御 |
+
+ブランチ：feature_11/delete
+| 機能 | 説明 |
+|---------------|------------|
+| delete | IDを指定してレコードを削除 |
 
 ## 実装順理由
 
