@@ -9,11 +9,17 @@
 
 ブランチ：feature_1/database
 
+- database:database周りを作成
+
 | 機能       | 説明            |
 |----------|---------------|
 | database | database周りを作成 |
 
 ブランチ：feature_３/read
+
+- Read:skiresortテーブルの前データを取得する
+- Read(ID):指定した既存IDのデータを取得する
+- Create:新規ID5の仮データを作成
 
 | 機能       | 説明                      |
 |----------|-------------------------|
@@ -23,27 +29,34 @@
 
 ブランチ：feature_5/errorHandling
 
+- ErrorHandling:存在しないIDを指定して取得する例外処理
+
 | 機能            | 説明                   |
 |---------------|----------------------|
 | ErrorHandling | 存在しないidを指定して取得する例外処理 |
 
 ブランチ：feature_7/update
 
+- Update:ID5のname,impressionデータを更新する
+
 | 機能     | 説明                         |
 |--------|----------------------------|
 | Update | ID5のname,impressionデータ更新する |
-|
-| Delete | IDを指定して1レコードを削除する          |
 
 ブランチ：feature_9/exception
+
+- ErrorHandling:nameに対する制御
 
 | 機能            | 説明         |
 |---------------|------------|
 | ErrorHandling | nameに対する制御 |
 
 ブランチ：feature_11/delete
-| 機能 | 説明 |
-|---------------|------------|
+
+- Delete:IDを指定して1レコードを削除する
+
+| 機能     | 説明             |
+|--------|----------------|
 | delete | IDを指定してレコードを削除 |
 
 ## 実装順理由
@@ -53,7 +66,6 @@
 | 1  | Read               | テーブルの全てのデータを取得してから開始するため                            |
 | 2  | Read(id)           | idに関するErrorHandlingを実装するため                          |
 | 3  | idのErrorHandling   | アプリケーションの安定性と信頼性を向上させるために重要な要素であり、早い段階で実装するべきと考えたため |
-|    |                    |
 | 4  | Update             | Createした仮データを完成させるため                                |
 | 5  | nameのErrorHandling | 早い段階で実装すべきだが、Update作成後にテストする必要があるため                 |
 | 6  | Delete             | 実装予定機能が完了してからDeleteするため                             |
@@ -66,6 +78,41 @@
 
 `-X GET http://localhost:8080/skiresorts -i`
 
+- 新規作成(id5)
+
+```
+curl -i -X POST -H "Content-Type: application/json" -d '{
+  "id": 5,
+  "name": "Skiresort Name",
+  "area": "Skiresort Area",
+  "impression": "Skiresort Impression"
+}' <http://localhost:8080/skiresorts>
+```
+
+- 更新(id5)
+
+```agsl
+% curl -X PATCH -H "Content-Type: application/json" -d '{
+   "name":"nozawa-onsen",
+   "area":"nagano",
+   "customerEvaluation":"ゴンドラが10人乗りでガラス張りに変わった。外国人ばかりで激混み"
+   }' http://localhost:8080/skiresorts/5 -i
+```
+
+- LocationHeader
+
+```agsl
+curl -i -X POST -H "Content-Type: application/json" -d '{
+"name":"Skiresort Name",
+"area":"Skiresort Area",
+"impression":"impression"
+}' http://localhost:8080/skiresorts
+```
+
+- Delete(id6)
+
+`% curl -i -X DELETE http://localhost:8080/skiresorts/6`
+
 ### 例外確認
 
 - 存在しないID99を指定
@@ -75,6 +122,16 @@
 - 存在しないID55を指定
 
 `curl http://localhost:8080/skiresorts/55 -i`
+
+- 存在しないid10を更新
+
+```agsl
+curl -X PATCH -H "Content-Type: application/json" -d '{
+"name":"hoge",
+"area":"hoge",
+"impression":"hoge"
+}' http://localhost:8080/skiresorts/10 -i
+```
 
 ## 動作確認ポイント
 
