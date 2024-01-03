@@ -24,7 +24,7 @@ class SkiresortMapperTest {
     @Test
     @DataSet(value = "datasets/skiresort.yml")
     @Transactional
-    void すベてのスキーリゾートが取得できること() {
+    void すべてのスキーリゾートが取得できること() {
         List<Skiresort> skiresorts = skiresortMapper.findAll();
         assertThat(skiresorts)
                 .hasSize(3)
