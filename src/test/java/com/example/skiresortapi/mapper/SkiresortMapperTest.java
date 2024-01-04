@@ -24,7 +24,7 @@ class SkiresortMapperTest {
     @Test
     @DataSet(value = "datasets/skiresort.yml")
     @Transactional
-    void すべてのスキーリゾートが取得できること() {
+    void すべてのスキーリゾート情報が取得できること() {
         List<Skiresort> skiresorts = skiresortMapper.findAll();
         assertThat(skiresorts)
                 .hasSize(3)
@@ -34,5 +34,13 @@ class SkiresortMapperTest {
                         new Skiresort(3, "hakubagoryu", "nagano", "インストラクターデビューしたスキー場")
 
                 );
+    }
+
+    @Test
+    @DataSet(value = "datasets/skiresort.yml")
+    @Transactional
+    void 指定したIDのスキーリゾート情報が取得できること() {
+        assertThat(skiresortMapper.findById(1))
+                .contains(new Skiresort(1, "appi", "iwate", "残雪で8月くらいまで営業している"));
     }
 }
