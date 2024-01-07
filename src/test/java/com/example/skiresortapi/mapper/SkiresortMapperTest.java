@@ -43,4 +43,12 @@ class SkiresortMapperTest {
         assertThat(skiresortMapper.findById(1))
                 .contains(new Skiresort(1, "appi", "iwate", "残雪で8月くらいまで営業している"));
     }
+
+    @Test
+    @DataSet(value = "datasets/empty-skiresort.yml")
+    @Transactional
+    void レコードが存在しない場合に空のListが取得できること() {
+        assertThat(skiresortMapper.findAll().isEmpty());
+
+    }
 }
