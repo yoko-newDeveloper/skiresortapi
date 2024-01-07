@@ -2,6 +2,7 @@ package com.example.skiresortapi.mapper;
 
 import com.example.skiresortapi.entity.Skiresort;
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -49,6 +50,14 @@ class SkiresortMapperTest {
     @Transactional
     void レコードが存在しない場合に空のListが取得できること() {
         assertThat(skiresortMapper.findAll().isEmpty());
+    }
 
+    @Test
+    @DataSet(value = "datasets/skiresort.yml")
+    @ExpectedDataSet(value = "datasets/update-skiresort.yml")
+    @Transactional
+    void 指定したIDのスキーリゾート情報を更新できること() {
+        Skiresort skiresort = new Skiresort(3, "hakubaiwatake", "nagano", "全コース滑るとオートマチックにレベルアップできる不思議なゲレンデ");
+        skiresortMapper.updateSkiresort(skiresort);
     }
 }
