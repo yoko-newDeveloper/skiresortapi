@@ -60,4 +60,12 @@ class SkiresortMapperTest {
         Skiresort skiresort = new Skiresort(3, "hakubaiwatake", "nagano", "全コース滑るとオートマチックにレベルアップできる不思議なゲレンデ");
         skiresortMapper.updateSkiresort(skiresort);
     }
+
+    @Test
+    @DataSet(value = "datasets/skiresort.yml")
+    @ExpectedDataSet(value = "datasets/delete-skiresort.yml")
+    @Transactional
+    void 指定したIDのスキーリゾート情報を削除すること() {
+        skiresortMapper.deleteSkiresort(3);
+    }
 }
