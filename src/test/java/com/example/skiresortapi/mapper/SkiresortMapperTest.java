@@ -68,4 +68,13 @@ class SkiresortMapperTest {
     void 指定したIDのスキーリゾート情報を削除すること() {
         skiresortMapper.deleteSkiresort(3);
     }
+
+    @Test
+    @DataSet(value = "datasets/skiresort.yml")
+    @ExpectedDataSet(value = "datasets/noUpdate-skiresort.yml")
+    @Transactional
+    void 更新時に指定したidが存在しないときテーブルのレコードが更新されないこと() {
+        Skiresort skiresortUpdate = new Skiresort(4, "takasu", "gifu", "いつも混んでいる人気のゲレンデ");
+        skiresortMapper.updateSkiresort(skiresortUpdate);
+    }
 }
