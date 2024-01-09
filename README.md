@@ -7,57 +7,41 @@
 
 ## 実装内容
 
-ブランチ：feature_1/database
+### ブランチ：feature_1/database
 
 - database:database周りを作成
 
-| 機能       | 説明            |
-|----------|---------------|
-| database | database周りを作成 |
-
-ブランチ：feature_３/read
+### ブランチ：feature_３/read
 
 - Read:skiresortテーブルの前データを取得する
 - Read(ID):指定した既存IDのデータを取得する
 - Create:新規ID5の仮データを作成
 
-| 機能       | 説明                      |
-|----------|-------------------------|
-| Read     | skiresortテーブルの全データを取得する |
-| Read(id) | 指定した既存idのデータを取得する       |
-| Create   | 新規id5を作成(仮データ)          |
-
-ブランチ：feature_5/errorHandling
+### ブランチ：feature_5/errorHandling
 
 - ErrorHandling:存在しないIDを指定して取得する例外処理
 
-| 機能            | 説明                   |
-|---------------|----------------------|
-| ErrorHandling | 存在しないidを指定して取得する例外処理 |
-
-ブランチ：feature_7/update
+### ブランチ：feature_7/update
 
 - Update:ID5のname,impressionデータを更新する
 
-| 機能     | 説明                         |
-|--------|----------------------------|
-| Update | ID5のname,impressionデータ更新する |
-
-ブランチ：feature_9/exception
+### ブランチ：feature_9/exception
 
 - ErrorHandling:nameに対する制御
 
-| 機能            | 説明         |
-|---------------|------------|
-| ErrorHandling | nameに対する制御 |
-
-ブランチ：feature_11/delete
+### ブランチ：feature_11/delete
 
 - Delete:IDを指定して1レコードを削除する
 
-| 機能     | 説明             |
-|--------|----------------|
-| delete | IDを指定してレコードを削除 |
+### ブランチ：feature_14/ut-mapper
+
+- すべてのスキーリゾート情報を取得する
+- 指定したIDのスキーリゾート情報を取得する
+- レコードが存在しない場合に空のListを取得する
+- 指定したIDの情報を更新する
+- 指定したIDの情報を削除する
+- 更新時に指定したIDが存在しないときテーブルのレコードが更新されない
+- 削除時に指定したIDが存在しないときテーブルのレコードが削除されない
 
 ## 実装順理由
 

@@ -73,8 +73,16 @@ class SkiresortMapperTest {
     @DataSet(value = "datasets/skiresort.yml")
     @ExpectedDataSet(value = "datasets/noUpdate-skiresort.yml")
     @Transactional
-    void 更新時に指定したidが存在しないときテーブルのレコードが更新されないこと() {
+    void 更新時に指定したIDが存在しないときテーブルのレコードが更新されないこと() {
         Skiresort skiresortUpdate = new Skiresort(4, "takasu", "gifu", "いつも混んでいる人気のゲレンデ");
         skiresortMapper.updateSkiresort(skiresortUpdate);
+    }
+
+    @Test
+    @DataSet(value = "datasets/skiresort.yml")
+    @ExpectedDataSet(value = "datasets/noDelete-skiresort.yml")
+    @Transactional
+    void 削除時に指定したIDが存在しないときテーブルのレコードが削除されないこと() {
+        skiresortMapper.deleteSkiresort(4);
     }
 }
