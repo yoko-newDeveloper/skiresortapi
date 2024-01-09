@@ -1,5 +1,8 @@
 package com.example.skiresortapi.entity;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class Skiresort {
 
     private int id;
@@ -23,7 +26,7 @@ public class Skiresort {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {

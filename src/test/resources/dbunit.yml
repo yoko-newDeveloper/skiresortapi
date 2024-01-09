@@ -1,0 +1,10 @@
+# Database Riderの設定
+cacheConnection: false
+cacheTableNames: false
+properties:
+  schema: skiresort
+caseInsensitiveStrategy: LOWERCASE
+connectionConfig:
+  url: "jdbc:mysql://localhost:3307/skiresort"
+  user: "user"
+  password: "password"

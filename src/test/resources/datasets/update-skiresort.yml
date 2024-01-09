@@ -1,0 +1,13 @@
+skiresort:
+  - id: 1
+    name: "appi"
+    area: "iwate"
+    impression: "残雪で8月くらいまで営業している"
+  - id: 2
+    name: "zao"
+    area: "yamagata"
+    impression: "樹氷が絶景"
+  - id: 3
+    name: "hakubaiwatake"
+    area: "nagano"
+    impression: "全コース滑るとオートマチックにレベルアップできる不思議なゲレンデ"
