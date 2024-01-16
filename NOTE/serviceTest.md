@@ -35,3 +35,14 @@
     - `doReturn -when`:スタブ化した`id1`のデータを定義する
     - `assertThat(actual).isEqualTo()`：`.isEqualTo`の引数に、期待値データを定義する
     - `verify`：1回だけ`id1`が呼び出されたかを確認する
+
+## 注意
+
+- `doReturn`はスタブ化（仮のデータ）を記述しているので、テスト内容によってその限りではない。
+
+- `doReturn`：Mapperの動作をスタブ化しているので、テスト期待値と等しくなる
+  今回のコードの場合、Mapperが返した値をそのまま返すようなServiceの実装になっているのでこの記述で良いが
+  Service内でMapperから取得した値を編集したりする場合この記述は正しくなくなる。
+
+- このテストではdoReturnがたまたま期待値と一致したということであり
+  実際の期待値は、`assertThat(actual).isEqualTo(期待値となる値)`と記述する。

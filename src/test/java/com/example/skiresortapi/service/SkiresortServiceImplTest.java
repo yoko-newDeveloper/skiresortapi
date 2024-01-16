@@ -35,5 +35,4 @@ class SkiresortServiceImplTest {
         verify(skiresortMapper, times(1)).findById(1);
 
     }
-
 }
