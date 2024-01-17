@@ -36,7 +36,7 @@
 
 - `when(モックインスタンス.メソッド(引数)).thenReturn(戻り値);`
 - `doReturn(戻り値).when(モックインスタンス).メソッド(引数);`
-- 存在するidを指定した時、正常にデータが返されること
+- 存在するIDを指定した時、正常にデータが返されること
     - `doReturn -when`:スタブ化した`id1`のデータを定義する
     - `assertThat(actual).isEqualTo()`：`.isEqualTo`の引数に、期待値データを定義する
     - `verify`：1回だけ`id1`が呼び出されたかを確認する
@@ -45,6 +45,11 @@
     - リスト化する
     - `doReturn(戻り値).when(モック化するMapperインスタンス).テストしたいメソッド();`
     - `actual`:テストしたい実際の値をリスト型のactualに代入する
+
+- 存在しないIDを指定した時、エラーメッセージが返されること
+    - `throws Exception`:必要？不要？存在しないIDを指定した時にMapperは一体どんな値を返すのかを考える
+    - `assertThatThrownBy()`:例外の検証ができる
+    - `ResourceNotFoundException`:指定したIDに該当するリソースがないことを通知する例外
 
 ## 注意
 

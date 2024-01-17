@@ -1,6 +1,7 @@
 package com.example.skiresortapi.service;
 
 import com.example.skiresortapi.entity.Skiresort;
+import com.example.skiresortapi.exception.ResourceNotFoundException;
 import com.example.skiresortapi.mapper.SkiresortMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -53,5 +55,17 @@ class SkiresortServiceImplTest {
         // actual(実際)の値がモック化した値(skiresorts)と等しいか検証する
         assertThat(actual).isEqualTo(skiresorts);
         verify(skiresortMapper, times(1)).findAll();
+    }
+
+    @Test
+    void 存在しないIDを指定した時エラーメッセージが返されること() throws Exception {
+        // モック化:ID100を指定した時に空かどうか
+        doReturn(Optional.empty()).when(skiresortMapper).findById(100);
+
+        // test実行:memberServiceImpl.findByIdメソッドにID100を渡した時、例外をスローすることを期待している
+        assertThatThrownBy(() -> skiresortServiceImpl.findById(100)) // テスト対象メソッド
+                // throwされる例外がResourceNotFoundException（リソースがないことを通知する）を返す
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessage("resource not found");
     }
 }
