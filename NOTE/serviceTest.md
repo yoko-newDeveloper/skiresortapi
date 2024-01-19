@@ -7,12 +7,14 @@
 - 依存しているクラスをモック化する
 - スタブ化(モック化)したMapperの状態を確認する
 - DBは無関係
-- doReturn:値を返すメソッドをスタブ化(モック化)した時に返す値を定義するためのメソッド
+- `doReturn`:値を返すメソッドをスタブ化(モック化)した時に返す値を定義するためのメソッド
 
   モックオブジェクトが特定のメソッド呼び出しに対して、特定の値を返すように指定するために使用される
 
   モックオブジェクトがgetSomeValue()メソッドが呼ばれた時に42を返すように設定する例
   `doReturn(42).when(someMock).getSomeValue();`
+
+- 検査例外と非検査例外:`throwshrows Exception`:必要？不要？->テストケース内で呼び出すメソッドが検査例外をthrowしうる場合必要
 
 ## 準備
 
@@ -62,6 +64,16 @@
     - `verify`:`skiresortMapper`オブジェクトの`updateSkiresort`メソッドが1回呼ばれたことの検証
     - `verify`の検証時に`updateSkiresort`を渡す->`Mockito`は`skiresortMapper.updateSkiresort`に更新後の`Lake Louise`
       の情報が渡されたのだよねという検証までしてくれる
+
+- updateskiresortに存在しないIDを指定するとエラーメッセージが返される
+    - `assertThatThrownBy`:例外の検証ができる。`ResourceNotFoundException`をthrowされることを期待している
+    - `isInstanceOf`:throwされた例外が`ResourceNotFoundException`のインスタンスであることを検証する
+- 指定したIDの情報を削除する
+    - `doReturn`:対象のIDのスキー場情報をモック化して`when`で`skiresortMapper`で対象IDを検索する
+    - `void`：`deleteSkiresort`はvoidのため、`assertThat`は使えない
+    - staticでないメソッド`deleteSkiresort(int)`をstaticコンテキストから参照することはできませんエラーが表示->
+      インスタンスメソッドをstaticメソッドの呼び出し方で呼び出していたのでエラー->staticメソッド = クラスメソッド
+    - 戻り値はvoidなので検証しない。Mapperに渡されている値はverifyで検証する
 
 ## 注意
 
