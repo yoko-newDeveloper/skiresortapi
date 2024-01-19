@@ -51,6 +51,18 @@
     - `assertThatThrownBy()`:例外の検証ができる
     - `ResourceNotFoundException`:指定したIDに該当するリソースがないことを通知する例外
 
+- 指定したIDの情報を更新できること
+
+1. `skiresortMapper`の`findById`メソッドを使って更新前のデータを取得する ->`d`oReturn -when`:whenに更新前データを定義する
+2. `skiresortServiceImpl`オブジェクトの`updateSkiresort`メソッドを呼び出す。このメソッドは、指定したIDのスキーリゾート情報を更新する->`Lake Louise`
+3. `verify`:`skiresortMapper`オブジェクトのID1が1回呼ばれたことの検証。
+4. 新しい`Skiresort`インスタンスを作成し、変数`updateSkiresort`に更新後データ`Lake Louise`を設定する。-> `Skiresort`
+   のインスタンス化`updateSkiresort`を定義しないとエラー
+5.
+    - `verify`:`skiresortMapper`オブジェクトの`updateSkiresort`メソッドが1回呼ばれたことの検証
+    - `verify`の検証時に`updateSkiresort`を渡す->`Mockito`は`skiresortMapper.updateSkiresort`に更新後の`Lake Louise`
+      の情報が渡されたのだよねという検証までしてくれる
+
 ## 注意
 
 - `doReturn`はスタブ化（仮のデータ）を記述しているので、テスト内容によってその限りではない。

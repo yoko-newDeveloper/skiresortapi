@@ -68,4 +68,22 @@ class SkiresortServiceImplTest {
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessage("resource not found");
     }
+
+    @Test
+    void 指定したIDのスキーリゾート情報を更新できること() {
+        // モック化:returnするSkiresortは更新前のデータを設定
+        doReturn(Optional.of(new Skiresort(1, "Whistler", "Canada", "11kmのロングランが楽しめる。次回は天気の良いハイシーズンに行きたい"))).when(skiresortMapper).findById(1);
+        // updateSkiresortメソッドを呼び出して、ID1が持つ情報をLake Louiseに更新する
+        skiresortServiceImpl.updateSkiresort(1, "Lake Louise", "Canada", "バンフから近くて無料シャトルバスがある。広大で美しいゲレンデ");
+
+        // skiresortMapperオブジェクトのID1が1回呼ばれたことの検証
+        verify(skiresortMapper, times(1)).findById(1);
+
+        // Skiresortのインスタンス定義
+        // これが更新後のデータの期待値 Lake Louise->Skiresortのインスタンス化updateSkiresortを定義しないとエラー
+        Skiresort updateSkiresort = new Skiresort(1, "Lake Louise", "Canada", "バンフから近くて無料シャトルバスがある。広大で美しいゲレンデ");
+        // skiresortMapperオブジェクトのupdateSkiresortByIdメソッドが1回呼ばれたことの検証
+        // skiresortMapperのupdateSkiresortメソッドの引数updateSkiresort変数が渡されて、更新後データであるLake Louiseであることを検証する
+        verify(skiresortMapper, times(1)).updateSkiresort(updateSkiresort);
+    }
 }
