@@ -58,7 +58,7 @@ class SkiresortServiceImplTest {
     }
 
     @Test
-    void 存在しないIDを指定した時エラーメッセージが返されること() throws Exception {
+    public void 存在しないIDを指定した時エラーメッセージが返されること() throws Exception {
         // モック化:ID100を指定した時に空かどうか
         doReturn(Optional.empty()).when(skiresortMapper).findById(100);
 
@@ -70,7 +70,7 @@ class SkiresortServiceImplTest {
     }
 
     @Test
-    void 指定したIDのスキーリゾート情報を更新できること() {
+    public void 指定したIDのスキーリゾート情報を更新できること() {
         // モック化:returnするSkiresortは更新前のデータを設定
         doReturn(Optional.of(new Skiresort(1, "Whistler", "Canada", "11kmのロングランが楽しめる。次回は天気の良いハイシーズンに行きたい"))).when(skiresortMapper).findById(1);
         // updateSkiresortメソッドを呼び出して、ID1が持つ情報をLake Louiseに更新する
@@ -85,5 +85,17 @@ class SkiresortServiceImplTest {
         // skiresortMapperオブジェクトのupdateSkiresortByIdメソッドが1回呼ばれたことの検証
         // skiresortMapperのupdateSkiresortメソッドの引数updateSkiresort変数が渡されて、更新後データであるLake Louiseであることを検証する
         verify(skiresortMapper, times(1)).updateSkiresort(updateSkiresort);
+    }
+
+    @Test
+    // updateSkiresortメソッドに対するテスト
+    public void 指定したIDが存在しない時にエラーメッセージが返されること() {
+        // ID100を指定したとき空かどうか -> モック化されたメソッドが存在しないため空のOptionalを返す
+        doReturn(Optional.empty()).when(skiresortMapper).findById(100);
+
+        assertThatThrownBy(() -> skiresortServiceImpl.updateSkiresort(100, "Coronet Peak", "NZ", "海外遠征で初めて滑ったスキー場。すごく広くてクイーンズタウンからも近い")) // テスト対象メソッド)
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessage("resource not found");
+        verify(skiresortMapper, times(1)).findById(100);
     }
 }
