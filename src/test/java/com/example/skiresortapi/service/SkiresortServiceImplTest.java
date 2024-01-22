@@ -1,5 +1,6 @@
 package com.example.skiresortapi.service;
 
+import com.example.skiresortapi.controller.form.SkiresortCreateForm;
 import com.example.skiresortapi.entity.Skiresort;
 import com.example.skiresortapi.exception.ResourceNotFoundException;
 import com.example.skiresortapi.mapper.SkiresortMapper;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -110,5 +112,22 @@ class SkiresortServiceImplTest {
         // deleteSkiresortはvoidなのでassertThat使用不可->verifyで検証する
         verify(skiresortMapper, times(1)).findById(1);
         verify(skiresortMapper, times(1)).deleteSkiresort(1);
+    }
+
+    @Test
+    public void 新規のスキーリゾート情報を登録できること() {
+        // skiresortCreateForm変数をインスタンス化して、それぞれの属性に値を設定
+        SkiresortCreateForm skiresortCreateForm = new SkiresortCreateForm("CoronetPeak", "NZ", "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ");
+        Skiresort skiresort = new Skiresort(0, "CoronetPeak", "NZ", "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ");
+
+        // スタブ化 insertSkiresortの戻り値はvoidのためdoNothingを使用する
+        doNothing().when(skiresortMapper).insertSkiresort(skiresort);
+
+        // テスト実行 actualにはSkiresortのオブジェクト（skiresort）を代入する
+        Skiresort actual = skiresortServiceImpl.createSkiresort(skiresortCreateForm);
+        // skiresortServiceImple.createSkiresortの戻り値であるSkiresortオブジェクトの値が期待通りであるかを検証する
+        assertThat(actual).isEqualTo(skiresort);
+        // verifyでskiresortMapper.insertSkiresortが1回呼ばれて引数にSkiresortが渡されていることを検証する
+        verify(skiresortMapper, times(1)).insertSkiresort(skiresort);
     }
 }

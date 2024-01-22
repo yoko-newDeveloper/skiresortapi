@@ -74,6 +74,19 @@
     - staticでないメソッド`deleteSkiresort(int)`をstaticコンテキストから参照することはできませんエラーが表示->
       インスタンスメソッドをstaticメソッドの呼び出し方で呼び出していたのでエラー->staticメソッド = クラスメソッド
     - 戻り値はvoidなので検証しない。Mapperに渡されている値はverifyで検証する
+- 新規登録
+    - `insertSkiresort`は戻り値がvoidなので、returnするべきものがない
+      ->`doNothing`を使う
+     `````` // モックインスタンスが呼ばれた時、何も返さない
+      doNothing().when(モックインスタンス).メソッド(任意の引数);```
+
+1. `Skiresort`をインスタンス化。`createSkiresort`メソッドに渡すための実引数を定義する
+2. `SkiresortCreateForm`をインスタンス化してぞれぞれの属性と値を設定する
+3. `doNothing`で`skiresortMapper.insertSkiresort(skiresort);`をスタブ化する->実際には何も返さない
+4. `skiresortServiceImpl.createSkiresort`の戻り値を、新しく作成した`skiresort`を`actual`に代入する。新規登録のテスト実行
+5. `skiresortServiceImpl.createSkiresort`の戻り値である`Skiresort`の値が期待通りであるか->`actual`と`insertSkiresort`
+   が等しいか`assertThat`で検証する
+6. `verify`で`skiresortMapper.insertSkiresort`が1回呼ばれて引数に`Skiresort`が渡されていることを検証する
 
 ## 注意
 
