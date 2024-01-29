@@ -88,6 +88,25 @@
    が等しいか`assertThat`で検証する
 6. `verify`で`skiresortMapper.insertSkiresort`が1回呼ばれて引数に`Skiresort`が渡されていることを検証する
 
+- `skiresortCreateForm`：リクエストボディのため属性にIDが含まれない。`name`,`area`,`impression`
+  `actual`:`skiresortServiceImpl.createSkiresort(skiresortCreateForm)`の呼び出し結果が代入される==Skiresortのオブジェクト(
+  ==skiresort) `assertThat`:`Skiresort`のオブジェクトと`actual`が等しいかを検証->つまり新規作成されたスキー場情報が`Skiresort`
+  オブジェクトであるか？を検証している
+- `Entity`クラス：DBのテーブルに対応するためIDが必要 `SkiresortCreateForm`クラス：FormはリクエストボディのためIDを持たない（FormはDBと対応していないため）
+
+debug確認
+
+- skiresortServiceImpl.createSkiresortが返すactialの値->actual = {Skiresort@4285} id = 0 name = "CoronetPeak" area = "NZ"
+  impression = "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ"
+- assertThatで比較しているSkiresortオブジェクト->skiresort = {Skiresort@4191} id = 0 name = "CoronetPeal" area = "NZ"
+  impression = "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ"
+- テストケースの命名:updateSkiresortとskiresortMapperメソッドに対するテスト
+- テスト対象のメソッドが異なる->Whenが異なるが、存在しないIDを指定した時エラーメッセージが返されるかのテストをしている
+- `Given`, `When`, `Then`を意識して考える
+- `Given`(入力):データの生成やモックの設定のようなテストの準備
+- `When`(実行):テスト対象のメソッドや動作の呼び出し
+- `Then`(出力):出力や振る舞いが正しいかどうか検証するためのアサーションの実行
+
 ## 注意
 
 - `doReturn`はスタブ化（仮のデータ）を記述しているので、テスト内容によってその限りではない。
