@@ -115,7 +115,7 @@ class SkiresortServiceImplTest {
     }
 
     @Nested
-    class DeletedSkiresortTest {
+    class DeleteSkiresortTest {
         @Test
         public void 指定したIDのスキーリゾート情報を削除できること() {
             doReturn(Optional.of(new Skiresort(1, "白馬乗鞍", "長野県", "初めてペンションに居候として山籠りし、初めて草大会に出場した思い出のゲレンデ"))).when(skiresortMapper).findById(1);
