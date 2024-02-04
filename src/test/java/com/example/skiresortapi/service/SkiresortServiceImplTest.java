@@ -30,6 +30,28 @@ class SkiresortServiceImplTest {
     @Mock // モック化(スタブ化)したいインスタンスに定義
     SkiresortMapper skiresortMapper;
 
+    @Nested
+    class FindAllTest {
+        @Test
+        public void 全てのスキーリゾート情報を取得できること() {
+
+            List<Skiresort> skiresorts = List.of(
+                    new Skiresort(1, "Cardrona", "NZ", "パイプのnationals公式大会で優勝して、副賞モルディブ1週間旅行だった！ゲレンデはコンクリートみたいに硬い"),
+                    new Skiresort(2, "Whistler", "Canada", "滞在2週間の半分以上雨で、記録的な少雪な年だった"),
+                    new Skiresort(3, "Mt.Hood", "Oregon", "標高が高すぎて高山病になった。ガスってる日に2000m以上続く急斜面で滑落した"));
+
+            // 依存しているSkiresortMapperをモック化する
+            // skiresortMapperのfindAll()メソッドが呼ばれた時にskiresortsリストを返す
+            doReturn(skiresorts).when(skiresortMapper).findAll();
+
+            // test実行
+            List<Skiresort> actual = skiresortServiceImpl.findAll();
+            // actual(実際)の値がモック化した値(skiresorts)と等しいか検証する
+            assertThat(actual).isEqualTo(skiresorts);
+            verify(skiresortMapper, times(1)).findAll();
+        }
+    }
+
     @Nested // JUnit5におけるネストしたテスト
     class FindByIdTest { // テスト対象メソッド名でクラスを作成
         @Test
@@ -59,24 +81,22 @@ class SkiresortServiceImplTest {
     }
 
     @Nested
-    class FindAllTest {
+    class InsertSkiresortTest {
         @Test
-        public void 全てのスキーリゾート情報を取得できること() {
+        public void 新規のスキーリゾート情報を登録できること() {
+            // skiresortCreateForm変数をインスタンス化して、それぞれの属性に値を設定
+            SkiresortCreateForm skiresortCreateForm = new SkiresortCreateForm("CoronetPeak", "NZ", "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ");
+            Skiresort skiresort = new Skiresort(0, "CoronetPeak", "NZ", "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ");
 
-            List<Skiresort> skiresorts = List.of(
-                    new Skiresort(1, "Cardrona", "NZ", "パイプのnationals公式大会で優勝して、副賞モルディブ1週間旅行だった！ゲレンデはコンクリートみたいに硬い"),
-                    new Skiresort(2, "Whistler", "Canada", "滞在2週間の半分以上雨で、記録的な少雪な年だった"),
-                    new Skiresort(3, "Mt.Hood", "Oregon", "標高が高すぎて高山病になった。ガスってる日に2000m以上続く急斜面で滑落した"));
+            // スタブ化 insertSkiresortの戻り値はvoidのためdoNothingを使用する
+            doNothing().when(skiresortMapper).insertSkiresort(skiresort);
 
-            // 依存しているSkiresortMapperをモック化する
-            // skiresortMapperのfindAll()メソッドが呼ばれた時にskiresortsリストを返す
-            doReturn(skiresorts).when(skiresortMapper).findAll();
-
-            // test実行
-            List<Skiresort> actual = skiresortServiceImpl.findAll();
-            // actual(実際)の値がモック化した値(skiresorts)と等しいか検証する
-            assertThat(actual).isEqualTo(skiresorts);
-            verify(skiresortMapper, times(1)).findAll();
+            // test実行 actualにはSkiresortのオブジェクト（skiresort）を代入する
+            Skiresort actual = skiresortServiceImpl.createSkiresort(skiresortCreateForm);
+            // skiresortServiceImple.createSkiresortの戻り値であるSkiresortオブジェクトの値が期待通りであるかを検証する
+            assertThat(actual).isEqualTo(skiresort);
+            // verifyでskiresortMapper.insertSkiresortが1回呼ばれて引数にSkiresortが渡されていることを検証する
+            verify(skiresortMapper, times(1)).insertSkiresort(skiresort);
         }
     }
 
@@ -127,27 +147,6 @@ class SkiresortServiceImplTest {
             // deleteSkiresortはvoidなのでassertThat使用不可->verifyで検証する
             verify(skiresortMapper, times(1)).findById(1);
             verify(skiresortMapper, times(1)).deleteSkiresort(1);
-        }
-    }
-
-
-    @Nested
-    class InsertSkiresortTest {
-        @Test
-        public void 新規のスキーリゾート情報を登録できること() {
-            // skiresortCreateForm変数をインスタンス化して、それぞれの属性に値を設定
-            SkiresortCreateForm skiresortCreateForm = new SkiresortCreateForm("CoronetPeak", "NZ", "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ");
-            Skiresort skiresort = new Skiresort(0, "CoronetPeak", "NZ", "初中級者の時に行ったので初めてのTバーに撃沈。岩だらけの広い氷山で日本にはないタイプのゲレンデ");
-
-            // スタブ化 insertSkiresortの戻り値はvoidのためdoNothingを使用する
-            doNothing().when(skiresortMapper).insertSkiresort(skiresort);
-
-            // test実行 actualにはSkiresortのオブジェクト（skiresort）を代入する
-            Skiresort actual = skiresortServiceImpl.createSkiresort(skiresortCreateForm);
-            // skiresortServiceImple.createSkiresortの戻り値であるSkiresortオブジェクトの値が期待通りであるかを検証する
-            assertThat(actual).isEqualTo(skiresort);
-            // verifyでskiresortMapper.insertSkiresortが1回呼ばれて引数にSkiresortが渡されていることを検証する
-            verify(skiresortMapper, times(1)).insertSkiresort(skiresort);
         }
     }
 }
