@@ -49,30 +49,22 @@ class SkiresortMapperTest {
     }
 
     @Nested
-    class DeletedSkiresortTest {
-        @Test
-        @DataSet(value = "datasets/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/delete-skiresort.yml")
-        @Transactional
-        void 指定したIDのスキーリゾート情報を削除すること() {
-            skiresortMapper.deleteSkiresort(3);
-        }
-
-        @Test
-        @DataSet(value = "datasets/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/noDelete-skiresort.yml")
-        @Transactional
-        void 削除時に指定したIDが存在しないときテーブルのレコードが削除されないこと() {
-            skiresortMapper.deleteSkiresort(4);
-        }
-    }
-
-    @Nested
     class FindByIdTest {
         @Test
         @DataSet(value = "datasets/skiresort.yml")
         @Transactional
         void 指定したIDのスキーリゾート情報が取得できること() {
+            assertThat(skiresortMapper.findById(1))
+                    .contains(new Skiresort(1, "appi", "iwate", "残雪で8月くらいまで営業している"));
+        }
+    }
+
+    @Nested
+    class CreateSkiresortTest {
+        @Test
+        @DataSet(value = "datasets/skiresort.yml")
+        @Transactional
+        void 新規のスキーリゾートを登録できること() {
             assertThat(skiresortMapper.findById(1))
                     .contains(new Skiresort(1, "appi", "iwate", "残雪で8月くらいまで営業している"));
         }
@@ -96,6 +88,25 @@ class SkiresortMapperTest {
         void 更新時に指定したIDが存在しないときテーブルのレコードが更新されないこと() {
             Skiresort skiresortUpdate = new Skiresort(4, "takasu", "gifu", "いつも混んでいる人気のゲレンデ");
             skiresortMapper.updateSkiresort(skiresortUpdate);
+        }
+    }
+
+    @Nested
+    class DeleteSkiresortTest {
+        @Test
+        @DataSet(value = "datasets/skiresort.yml")
+        @ExpectedDataSet(value = "datasets/delete-skiresort.yml")
+        @Transactional
+        void 指定したIDのスキーリゾート情報を削除すること() {
+            skiresortMapper.deleteSkiresort(3);
+        }
+
+        @Test
+        @DataSet(value = "datasets/skiresort.yml")
+        @ExpectedDataSet(value = "datasets/noDelete-skiresort.yml")
+        @Transactional
+        void 削除時に指定したIDが存在しないときテーブルのレコードが削除されないこと() {
+            skiresortMapper.deleteSkiresort(4);
         }
     }
 }

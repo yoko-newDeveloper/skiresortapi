@@ -25,8 +25,14 @@
 - `@Mock` // モック化（スタブ化）する対象に定義
 - `@InjectMocks` // テスト対象に定義 @Mockでモックにしたインスタンスの注入先となるインスタンスに定義（インターフェースに付けるとエラー）
 
-## 実装
+## エラー
 
+- `staticでないメソッドdeleteSkiresort(int)をstaticコンテキストから参照することはできません`:インスタンスメソッドをstaticメソッドの呼び出し方で呼び出していたのでエラー ->
+  staticメソッド = クラスメソッド
+
+## 実装概要
+
+- `throws Exception`:テスト対象が検査例外をthrowするかどうかで必要不要を判断する。Mapperの返す値によって例外を起こしそうな場合は必要
 - `doReturn`:Mapperの動作をスタブ化している仮のデータを定義している
 - `Skiresort actual`:実際の値が入る
 - `assertThat`:テスト対象の実行結果やオブジェクトの状態を期待する値や条件と比較する
@@ -38,6 +44,21 @@
 
 - `when(モックインスタンス.メソッド(引数)).thenReturn(戻り値);`
 - `doReturn(戻り値).when(モックインスタンス).メソッド(引数);`
+
+## doNotingの書き方
+
+```// モックインスタンスが呼ばれた時、何も返さない
+doNothing().when(モックインスタンス).メソッド(任意の引数);
+```
+
+## doReturn or doNothing(deleteとinsert：どちらもvoidを返す)
+
+- スタブ化するものに戻り値がある->doReturn
+- `delete`:`Mapper`の`findByIdを`スタブ化している(findByIdには戻り値がある)-> IDを使ってSkiresortを探している
+- `insert`:`Mapper=の`findById`は呼ばれていないので、findByIdをスタブ化する必要はない
+
+---
+
 - 存在するIDを指定した時、正常にデータが返されること
     - `doReturn -when`:スタブ化した`id1`のデータを定義する
     - `assertThat(actual).isEqualTo()`：`.isEqualTo`の引数に、期待値データを定義する
@@ -65,7 +86,7 @@
     - `verify`の検証時に`updateSkiresort`を渡す->`Mockito`は`skiresortMapper.updateSkiresort`に更新後の`Lake Louise`
       の情報が渡されたのだよねという検証までしてくれる
 
-- updateskiresortに存在しないIDを指定するとエラーメッセージが返される
+- updateSkiresortに存在しないIDを指定するとエラーメッセージが返される
     - `assertThatThrownBy`:例外の検証ができる。`ResourceNotFoundException`をthrowされることを期待している
     - `isInstanceOf`:throwされた例外が`ResourceNotFoundException`のインスタンスであることを検証する
 - 指定したIDの情報を削除する
