@@ -5,7 +5,9 @@ on:
   pull_request:
   push:
 
-
+# アクション実行時にリポジトリのコンテンツに対する権限
+permissions:
+  contents: read
 
 # ワークフロー内のジョブ
 jobs:
