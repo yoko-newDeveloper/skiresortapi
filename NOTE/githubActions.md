@@ -26,6 +26,14 @@
 - `run`:具体的なシェルで`|`を使えばパイプライン処理も可能
 - `run-name:`pushやpull_requestイベントによってトリガーされるワークフローの場合、コミットメッセージとして設定される
 
+## タスク順序
+
+- Hello Worldするだけのワークフローを作成
+- pull Requestをトリガーとして動くようにワークフローを修正
+- Gradleでtestする方法を調べる
+- GitHub ActionsでGradleをzipに固めてアップロードする方法を検索
+- /gradle testの実行結果のテストレポートをUploadするようにワークフローを修正
+
 ## gradleでtestする方法
 
 - GradleでJavaのプロジェクトのビルドとテストを行う
@@ -35,3 +43,12 @@
 
 - `./gradlew test`:Gradleを使ってプロジェクトをビルドし、ユニットテストを実行する
 - `./gradlew clean test`:プロジェクトをクリーンにしてからテストする
+
+---
+
+- uses:actions/upload-artifact@v2:upload-artifactを使用してアップロードを行う
+- アップロード先:GitHubのストレージ
+
+## artifact確認方法
+
+- `Actions`一覧より左のサイドバーから該当のワークフローを選択->`workflow runs`から実行の名前を選択
