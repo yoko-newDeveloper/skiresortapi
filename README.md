@@ -96,6 +96,15 @@ Serviceテスト
 
     - 指定したIDのスキーリゾート情報を削除できること
 
+### ブランチ:feature_20/gradle-test
+
+GitHub Actionsでワークフローを自動化する
+`Hello World`を表示させるだけのコードを実装する
+
+### ブランチ:feature_22/githubActions-gradleTest
+
+hello.ymlを単体テストを自動でビルドしてテストを行うように修正する
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
