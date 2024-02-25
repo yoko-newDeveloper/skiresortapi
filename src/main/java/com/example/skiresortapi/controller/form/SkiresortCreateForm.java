@@ -1,13 +1,13 @@
 package com.example.skiresortapi.controller.form;
 
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public class SkiresortCreateForm {
-    @NotNull
+    @NotBlank
     private String name;
-    @NotNull
+    @NotBlank
     private String area;
-    @NotNull
+    @NotBlank
     private String impression;
 
     public SkiresortCreateForm(String name, String area, String impression) {
