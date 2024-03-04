@@ -105,6 +105,15 @@ GitHub Actionsでワークフローを自動化する
 
 hello.ymlを単体テストを自動でビルドしてテストを行うように修正する
 
+## ブランチ:feature_24/githubActions-gradleTestArtifact
+
+Artifactを使用したGradleテストを実行
+
+## ブランチ:feature_26/validation
+
+name,area,customerEvaluationsのnull,空文字,ブランクを許可しない
+正常系テスト、異常系テストを実行する
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
