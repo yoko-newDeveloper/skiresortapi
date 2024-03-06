@@ -3,14 +3,26 @@ skiresort:
   - id: 1
     name: "LakeLouise"
     area: "Canada"
+<<<<<<< HEAD
     customerEvaluation: "Canada's most beautiful skiresort area"
+=======
+    impression: "Canada's most beautiful skiresort area"
+>>>>>>> ed2eb79 (全てのデータを取得するテスト)
 
   - id: 2
     name: "Vail"
     area: "Colorado"
+<<<<<<< HEAD
     customerEvaluation: "It's the most popular place in America, but I've never been there yet"
+=======
+    impression: "It's the most popular place in America, but I've never been there yet"
+>>>>>>> ed2eb79 (全てのデータを取得するテスト)
 
   - id: 3
     name: "Zermatt"
     area: "Swiss"
+<<<<<<< HEAD
     customerEvaluation: "The most beautiful and popular in the world"
+=======
+    impression: "The most beautiful and popular in the world"
+>>>>>>> ed2eb79 (全てのデータを取得するテスト)

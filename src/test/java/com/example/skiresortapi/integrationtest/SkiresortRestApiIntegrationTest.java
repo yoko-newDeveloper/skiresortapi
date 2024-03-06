@@ -28,7 +28,11 @@ public class SkiresortRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/it/skiresort.yml")
     @Transactional
+<<<<<<< HEAD
     void スキーリゾートを全件取得したときステータスコードが200を返すこと() throws Exception {
+=======
+    void スキーリゾートを全件取得した時ステータスコードが200を返すこと() throws Exception {
+>>>>>>> ed2eb79 (全てのデータを取得するテスト)
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/skiresorts"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
@@ -49,5 +53,9 @@ public class SkiresortRestApiIntegrationTest {
                     }
                 ]
                 """, response, JSONCompareMode.STRICT);
+<<<<<<< HEAD
         }
+=======
+    }
+>>>>>>> ed2eb79 (全てのデータを取得するテスト)
 }
