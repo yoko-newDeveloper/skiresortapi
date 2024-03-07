@@ -28,7 +28,7 @@ public class SkiresortRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/it/skiresort.yml")
     @Transactional
-    void スキーリゾートを全件取得した時ステータスコードが200を返すこと() throws Exception {
+    void スキーリゾートを全件取得したときステータスコードが200を返すこと() throws Exception {
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/skiresorts"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
