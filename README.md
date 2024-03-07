@@ -101,7 +101,7 @@ Serviceテスト
 GitHub Actionsでワークフローを自動化する
 `Hello World`を表示させるだけのコードを実装する
 
-### ブランチ:feature_22/githubActions-gradleTest
+## ブランチ:feature_22/githubActions-gradleTest
 
 hello.ymlを単体テストを自動でビルドしてテストを行うように修正する
 
@@ -113,6 +113,13 @@ Artifactを使用したGradleテストを実行
 
 name,area,customerEvaluationsのnull,空文字,ブランクを許可しない
 正常系テスト、異常系テストを実行する
+
+<<<<<<< HEAD
+## feature_28/it-getAll
+全てのスキーリゾート情報を取得し、ステータスコード200が返されることのテスト
+=======
+## ブランチ:feature_28/it-getAll
+>>>>>>> ed2eb79 (全てのデータを取得するテスト)
 
 ## 実装順理由
 
