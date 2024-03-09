@@ -26,7 +26,7 @@ class SkiresortMapperTest {
     @Nested
     class FindAllTest {
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
         void すべてのスキーリゾート情報が取得できること() {
             List<Skiresort> skiresorts = skiresortMapper.findAll();
@@ -41,7 +41,7 @@ class SkiresortMapperTest {
         }
 
         @Test
-        @DataSet(value = "datasets/empty-skiresort.yml")
+        @DataSet(value = "datasets/ut/empty-skiresort.yml")
         @Transactional
         void レコードが存在しない場合に空のListが取得できること() {
             assertThat(skiresortMapper.findAll().isEmpty());
@@ -51,7 +51,7 @@ class SkiresortMapperTest {
     @Nested
     class FindByIdTest {
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
         void 指定したIDのスキーリゾート情報が取得できること() {
             assertThat(skiresortMapper.findById(1))
@@ -62,7 +62,7 @@ class SkiresortMapperTest {
     @Nested
     class CreateSkiresortTest {
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
         void 新規のスキーリゾートを登録できること() {
             assertThat(skiresortMapper.findById(1))
@@ -73,8 +73,8 @@ class SkiresortMapperTest {
     @Nested
     class UpdateSkiresortTest {
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/update-skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
+        @ExpectedDataSet(value = "datasets/ut/update-skiresort.yml")
         @Transactional
         void 指定したIDのスキーリゾート情報を更新できること() {
             Skiresort skiresort = new Skiresort(3, "hakubaiwatake", "nagano", "全コース滑るとオートマチックにレベルアップできる不思議なゲレンデ");
@@ -82,8 +82,8 @@ class SkiresortMapperTest {
         }
 
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/noUpdate-skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
+        @ExpectedDataSet(value = "datasets/ut/noUpdate-skiresort.yml")
         @Transactional
         void 更新時に指定したIDが存在しないときテーブルのレコードが更新されないこと() {
             Skiresort skiresortUpdate = new Skiresort(4, "takasu", "gifu", "いつも混んでいる人気のゲレンデ");
@@ -94,16 +94,16 @@ class SkiresortMapperTest {
     @Nested
     class DeleteSkiresortTest {
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/delete-skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
+        @ExpectedDataSet(value = "datasets/ut/delete-skiresort.yml")
         @Transactional
         void 指定したIDのスキーリゾート情報を削除すること() {
             skiresortMapper.deleteSkiresort(3);
         }
 
         @Test
-        @DataSet(value = "datasets/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/noDelete-skiresort.yml")
+        @DataSet(value = "datasets/ut/skiresort.yml")
+        @ExpectedDataSet(value = "datasets/ut/noDelete-skiresort.yml")
         @Transactional
         void 削除時に指定したIDが存在しないときテーブルのレコードが削除されないこと() {
             skiresortMapper.deleteSkiresort(4);
