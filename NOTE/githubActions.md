@@ -52,3 +52,9 @@
 ## artifact確認方法
 
 - `Actions`一覧より左のサイドバーから該当のワークフローを選択->`workflow runs`から実行の名前を選択
+  ![img.png](img.png)
+
+- `Artifacts`:成果物が生成される
+  ![img_1.png](img_1.png)
+- zipを確認
+  ![img_2.png](img_2.png)

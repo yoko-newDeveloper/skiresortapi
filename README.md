@@ -1,9 +1,9 @@
 # skiresortapiアプリケーション概要
 
-スキー場における名称・エリア・特徴についてのCRUDアプリケーション及びテスト
+スキーリゾートにおける名称・エリア・特徴についてのCRUDアプリケーション及びテスト
 テストレポートは自動生成する
 
-# 存在しないidを指定した場合404エラーを返す
+## 存在しないidを指定した場合404エラーを返す
 
 ## 実装内容
 
@@ -32,6 +32,8 @@
 ### ブランチ：feature_11/delete
 
 - Delete:IDを指定して1レコードを削除する
+
+## 単体テスト
 
 ### ブランチ：feature_14/ut-mapper
 
@@ -65,7 +67,7 @@ Mapperテスト
     - 指定したIDのスキーリゾート情報が取得できること
 3. insertSkiresort
     - 新規のスキーリゾートを登録できること
-4. updateskiresort
+4. updateSkiresort
     - 指定したIDのスキーリゾート情報を更新できること
     - 更新時に指定したIDが存在しないときテーブルのレコードが更新されないこと
 5. deleteSkiresort
@@ -96,30 +98,38 @@ Serviceテスト
 
     - 指定したIDのスキーリゾート情報を削除できること
 
+## GitHubActions
+
 ### ブランチ:feature_20/gradle-test
 
 GitHub Actionsでワークフローを自動化する
-`Hello World`を表示させるだけのコードを実装する
 
-## ブランチ:feature_22/githubActions-gradleTest
+- `Hello World`を表示させるだけのコードを実装する
 
-hello.ymlを単体テストを自動でビルドしてテストを行うように修正する
+### ブランチ:feature_22/githubActions-gradleTest
 
-## ブランチ:feature_24/githubActions-gradleTestArtifact
+- hello.ymlを単体テストを自動でビルドしてテストを行うように修正する
 
-Artifactを使用したGradleテストを実行
+### ブランチ:feature_24/githubActions-gradleTestArtifact
 
-## ブランチ:feature_26/validation
+- Artifactを使用したGradleテストを実行
 
-name,area,customerEvaluationsのnull,空文字,ブランクを許可しない
-正常系テスト、異常系テストを実行する
+### ブランチ:feature_26/validation
 
-<<<<<<< HEAD
-## feature_28/it-getAll
-全てのスキーリゾート情報を取得し、ステータスコード200が返されることのテスト
-=======
-## ブランチ:feature_28/it-getAll
->>>>>>> ed2eb79 (全てのデータを取得するテスト)
+- name,area,customerEvaluationsのnull,空文字,ブランクを許可しない
+  正常系テスト、異常系テストを実行する
+
+## 結合テスト
+
+### ブランチ:feature_28/it-getAll
+
+- 全てのスキーリゾート情報を取得し、ステータスコード200が返されることのテスト
+
+### ブランチ:feature_30/it-readById
+
+- ReadByIdメソッドのテスト
+    - 存在しないIDを取得し、ステータスコード404が返されることのテスト
+    - 存在しないIDを取得し、ステータスコードが200が返されることのテスト
 
 ## 実装順理由
 
