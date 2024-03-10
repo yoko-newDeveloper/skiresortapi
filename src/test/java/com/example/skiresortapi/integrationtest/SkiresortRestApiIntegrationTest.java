@@ -5,8 +5,10 @@ import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.skyscreamer.jsonassert.Customization;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.skyscreamer.jsonassert.comparator.CustomComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -137,6 +139,35 @@ public class SkiresortRestApiIntegrationTest {
                         "message": "successfully update"
                     }
                     """, response, JSONCompareMode.STRICT);
+        }
+
+        @Test
+        @DataSet(value = "datasets/it/skiresort.yml")
+        @Transactional
+        void 存在しないIDのスキーリゾートを更新した時ステータスコード404を返すこと() throws Exception {
+            String response = mockMvc.perform(MockMvcRequestBuilders.patch("/skiresorts/{id}", 100)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content("""
+                                    {
+                                        "id": 100,
+                                        "name": "Blue Mountain",
+                                        "area": "Canada",
+                                        "impression": "All of the lodges and ski houses are cute, like a dreamland"
+                                    }
+                                    """))
+                    .andExpect(MockMvcResultMatchers.status().isNotFound())
+                    .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+            JSONAssert.assertEquals("""
+                    {
+                        "path": "/skiresorts/100",
+                        "status": "404",
+                        "message": "resource not found",
+                        "timestamp": "2024-03-10T20:48.123456789+09:00[JST/Tokyo]",
+                        "error": "Not Found"
+                    }
+                    // timestampは比較対象外
+                    """, response, new CustomComparator(JSONCompareMode.STRICT, new Customization("timestamp", ((o1, o2) -> true))));
         }
     }
 }
