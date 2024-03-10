@@ -38,8 +38,6 @@
 
 - `JSONAsserr.assertEquals`:JSON形式で新規登録する情報を全て記述する(SkiresortResponseのフィールドに合わせること)
 
-## ブランチ:feature_34/it-create
-
 ### 存在するIDを指定してスキーリゾート情報を更新する
 
 - `isOk()`:リクエスト成功
@@ -67,7 +65,7 @@ timestampの比較:テスト実行のタイミングや実行速度がリアル�
 
 - LocalDateTime nowDate = LocalDateTime.now();特定のタイムゾーンに依存しない場合の現在時刻の取得
 - ZoneDataTime now = ZonedDateTime now();プログラムを実行した場所(国)での現在自刻の取得
-- "/skiresorts/{id}", 100":存在しないIDのパスを指定
+- "/skiresorts/{id}", 100":存在しないIDのパスOkを指定
 - assert.Equalsの内容
     - "path":期待する値のパス(100は存在しない)->"/skiresorts/100"
     - "status":期待するステータスコード
@@ -76,6 +74,11 @@ timestampの比較:テスト実行のタイミングや実行速度がリアル�
     - "error":ステータスコードに対応したエラー
 - `JSONCompareMode.STRICT`:JSON比較モードで全てのフィールドが一致していること
 - `((o1, o2) -> (true)`:object1,2は常にtrueを返す->timestampの値は比較除外される
+
+### IDを指定してスキーリゾートを削除する
+
+- `@dataset`:初期値設定
+- `@ExpectedDataSet`:期待値の全てのデータ設定
 
 ### よく出るエラー
 
