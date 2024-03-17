@@ -36,7 +36,7 @@
 
 リクエストボディを書く
 
-- `JSONAsserr.assertEquals`:JSON形式で新規登録する情報を全て記述する(SkiresortResponseのフィールドに合わせること)
+- `JSONAssert.assertEquals`:JSON形式で新規登録する情報を全て記述する(SkiresortResponseのフィールドに合わせること)
 
 ### 存在するIDを指定してスキーリゾート情報を更新する
 
@@ -54,8 +54,9 @@
 - dd:日(2文字)
 - T:T文字(日付と時刻を区別するための文字)
 - HH:時(2文字)
+- mm:分（2文字）
 - ss:秒(2文字)
-- sssssssss:ナノ秒(9文字)
+- SSSSSSSSS:ナノ秒(9文字)
 - XXX:タイムゾーンオフセット
 - 時差:日本はUTC(協定世界時)から+9
 - JST:日本標準時
@@ -66,7 +67,7 @@ timestampの比較:テスト実行のタイミングや実行速度がリアル�
 
 - LocalDateTime nowDate = LocalDateTime.now();特定のタイムゾーンに依存しない場合の現在時刻の取得
 - ZoneDataTime now = ZonedDateTime now();プログラムを実行した場所(国)での現在自刻の取得
-- "/skiresorts/{id}", 100":存在しないIDのパスOkを指定
+- "/skiresorts/{id}", 100":存在しないIDのパスを指定
 - assert.Equalsの内容
     - "path":期待する値のパス(100は存在しない)->"/skiresorts/100"
     - "status":期待するステータスコード
@@ -74,7 +75,7 @@ timestampの比較:テスト実行のタイミングや実行速度がリアル�
     - "timestamp":今回は適当。ISO 8601形式に従って記載
     - "error":ステータスコードに対応したエラー
 - `JSONCompareMode.STRICT`:JSON比較モードで全てのフィールドが一致していること
-- `((o1, o2) -> (true)`:object1,2は常にtrueを返す->timestampの値は比較除外される
+- `((o1, o2) -> true)`:object1(期待値),object2(実際の値)は常にtrueを返す->timestampの値は比較除外される
 
 ### IDを指定してスキーリゾートを削除する
 

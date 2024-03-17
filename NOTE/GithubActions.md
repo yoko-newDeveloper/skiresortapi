@@ -25,6 +25,7 @@
     - `uses`:ジョブで指定するリポジトリ
 - `run`:具体的なシェルで`|`を使えばパイプライン処理も可能
 - `run-name:`pushやpull_requestイベントによってトリガーされるワークフローの場合、コミットメッセージとして設定される
+- `if: always()`:Archive unit test resultsステップに記述することで、常に実行されるようになる
 
 ## タスク順序
 
@@ -32,7 +33,7 @@
 - pull Requestをトリガーとして動くようにワークフローを修正
 - Gradleでtestする方法を調べる
 - GitHub ActionsでGradleをzipに固めてアップロードする方法を検索
-- /gradle testの実行結果のテストレポートをUploadするようにワークフローを修正
+- /gradlew testの実行結果のテストレポートをUploadするようにワークフローを修正
 
 ## gradleでtestする方法
 
@@ -46,7 +47,7 @@
 
 ---
 
-- uses:actions/upload-artifact@v2:upload-artifactを使用してアップロードを行う
+- `uses:actions/upload-artifact@v2`:`upload-artifact`を使用してアップロードを行う
 - アップロード先:GitHubのストレージ
 
 ## artifact確認方法

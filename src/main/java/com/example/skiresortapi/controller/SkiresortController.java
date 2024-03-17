@@ -42,12 +42,12 @@ public class SkiresortController {
     }
 
     @PostMapping("/skiresorts")
-    public ResponseEntity<SkiresortResponse> createSkiresort(@RequestBody @Valid SkiresortCreateForm skiresortCreateForm, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<?> createSkiresort(@RequestBody @Valid SkiresortCreateForm skiresortCreateForm, UriComponentsBuilder uriBuilder) {
         Skiresort skiresort = skiresortService.createSkiresort(skiresortCreateForm);
 
         // skiresortオブジェクトを元にレスポンス用のオブジェクトを生成
         SkiresortResponse skiresortResponse = new SkiresortResponse(skiresort);
-        // URI:リソースの位置や名前を特定するためのもの
+        // URI:リソースの位置や名前を特定する
         // HttpServletRequestのインスタンスでリクエストの中身を取得し、動的なURLを生成
         URI location = uriBuilder.path("/skiresorts/{id}").buildAndExpand(skiresort.getId()).toUri();
         return ResponseEntity.created(location).body(skiresortResponse);
