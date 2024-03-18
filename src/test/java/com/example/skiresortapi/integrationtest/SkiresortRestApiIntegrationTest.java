@@ -29,30 +29,30 @@ public class SkiresortRestApiIntegrationTest {
     MockMvc mockMvc;
 
     @Nested
-    class CreateTest {
+    class UpdateTest {
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
-        @ExpectedDataSet(value = "datasets/it/create-skiresort.yml", ignoreCols = {"id"})
+        @ExpectedDataSet(value = "datasets/it/update-skiresort.yml")
         @Transactional
-        void 新規のスキーリゾートを登録した時ステータスコード201を返すこと() throws Exception {
-            String response = mockMvc.perform(MockMvcRequestBuilders.post("/skiresorts")
+        void 存在するIDを指定してスキーリゾート情報を更新するとステータスコード200を返すこと() throws Exception {
+            String response = mockMvc.perform(MockMvcRequestBuilders.patch("/skiresorts/{id}", 3)
                             .contentType(MediaType.APPLICATION_JSON)
                             .content("""
                                     {
-                                        "name": "Whistler",
-                                        "area": "Canada",
-                                        "impression": "Obtained Canadian snowboard instructor license"
+                                        "id": 3,
+                                        "name": "Treble Cone",
+                                        "area": "New Zealand",
+                                        "impression": "Features a long course with views of Lake Wanaka"
                                     }
                                     """))
-                    .andExpect(MockMvcResultMatchers.status().isCreated())
+                    .andExpect(MockMvcResultMatchers.status().isOk())
                     .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
             JSONAssert.assertEquals("""
                     {
-                        "name": "Whistler",
-                        "area": "Canada"
-                        }
-                        """, response, JSONCompareMode.STRICT);
+                        "message": "successfully update"
+                    }
+                    """, response, JSONCompareMode.STRICT);
         }
     }
 }
