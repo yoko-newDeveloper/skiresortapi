@@ -4,8 +4,8 @@ name: Java CI with Gradle
 on:
   pull_request:
   push:
-  #    branches:
-  #     - main
+    branches:
+      - main
 
   # アクション実行時にリポジトリのコンテンツに対する権限
 permissions:
