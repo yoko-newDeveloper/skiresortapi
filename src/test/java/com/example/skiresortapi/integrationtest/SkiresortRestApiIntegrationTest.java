@@ -28,30 +28,20 @@ public class SkiresortRestApiIntegrationTest {
     MockMvc mockMvc;
 
     @Nested
-    class ReadAllTest {
+    class ReadByIdTest {
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
         @Transactional
-        void スキーリゾートを全件取得した時ステータスコード200を返すこと() throws Exception {
-            String response = mockMvc.perform(MockMvcRequestBuilders.get("/skiresorts"))
+        void 存在するIDのスキーリゾートを取得した時ステータスコード200を返すこと() throws Exception {
+            String response = mockMvc.perform(MockMvcRequestBuilders.get("/skiresorts/{id}", 3))
                     .andExpect(status().isOk())
                     .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
             JSONAssert.assertEquals("""
-                    [
-                        {
-                            "name": "LakeLouise",
-                            "area": "Canada"
-                        },
-                        {
-                            "name": "Vail",
-                            "area": "Colorado"
-                        },
                         {
                             "name": "Zermatt",
                             "area": "Swiss"
                         }
-                    ]
                     """, response, JSONCompareMode.STRICT);
         }
     }
