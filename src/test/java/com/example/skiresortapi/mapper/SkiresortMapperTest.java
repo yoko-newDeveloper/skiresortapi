@@ -57,6 +57,14 @@ class SkiresortMapperTest {
             assertThat(skiresortMapper.findById(1))
                     .contains(new Skiresort(1, "appi", "iwate", "残雪で8月くらいまで営業している"));
         }
+
+        @Test
+        @DataSet(value = "datasets/ut/skiresort.yml")
+        @Transactional
+        void 指定したIDの新規スキーリゾート情報を登録できること() {
+            Skiresort skiresort = new Skiresort(4, "yunomaru", "nagano", "道路を渡ったところに急斜面がある");
+            skiresortMapper.updateSkiresort(skiresort);
+        }
     }
 
     @Nested
