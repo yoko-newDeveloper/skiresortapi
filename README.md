@@ -145,6 +145,18 @@ GitHub Actionsでワークフローを自動化する
 - 存在するIDを指定した削除
 - 存在しないIDを指定した削除
 
+## ブランチ:feature_39/validationImplement
+
+- CustomExceptionHandlerの整理
+
+## ブランチ:feature_41/validator
+
+- nameに関するバリデーション
+
+## ブランチ:feature_43/ut-mapperTest-add
+
+- ReadByIdメソッドのテストを追加
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
