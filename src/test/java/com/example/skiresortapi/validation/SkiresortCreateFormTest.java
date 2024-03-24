@@ -201,7 +201,7 @@ class SkiresortCreateFormTest {
         }
 
         @Test
-        public void impressionが50文字である時バリデーションエラーとならないとこ() {
+        public void impressionが50文字である時バリデーションエラーとならないこと() {
             SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hoot", "USA", "12345678901234567890123456789012345678901234567890");
             var violations = validator.validate(createForm);
             assertThat(violations).isEmpty();
