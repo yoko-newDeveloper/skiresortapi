@@ -157,6 +157,10 @@ GitHub Actionsでワークフローを自動化する
 
 - ReadByIdメソッドのテストを追加
 
+## ブランチ:feature_45/areaValidation
+
+- areaに関するバリデーション
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |

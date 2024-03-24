@@ -25,6 +25,7 @@ class SkiresortMapperTest {
 
     @Nested
     class FindAllTest {
+
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
@@ -50,6 +51,7 @@ class SkiresortMapperTest {
 
     @Nested
     class FindByIdTest {
+
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
@@ -69,6 +71,7 @@ class SkiresortMapperTest {
 
     @Nested
     class CreateSkiresortTest {
+
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
@@ -80,6 +83,7 @@ class SkiresortMapperTest {
 
     @Nested
     class UpdateSkiresortTest {
+
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         @ExpectedDataSet(value = "datasets/ut/update-skiresort.yml")
@@ -101,6 +105,7 @@ class SkiresortMapperTest {
 
     @Nested
     class DeleteSkiresortTest {
+
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         @ExpectedDataSet(value = "datasets/ut/delete-skiresort.yml")

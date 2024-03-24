@@ -34,6 +34,7 @@ public class SkiresortRestApiIntegrationTest {
 
     @Nested
     class ReadAllTest {
+
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
         @Transactional
@@ -63,6 +64,7 @@ public class SkiresortRestApiIntegrationTest {
 
     @Nested
     class ReadByIdTest {
+
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
         @Transactional
@@ -90,6 +92,7 @@ public class SkiresortRestApiIntegrationTest {
 
     @Nested
     class CreateTest {
+
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
         @ExpectedDataSet(value = "datasets/it/create-skiresort.yml", ignoreCols = {"id"})
@@ -118,6 +121,7 @@ public class SkiresortRestApiIntegrationTest {
 
     @Nested
     class UpdateTest {
+
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
         @ExpectedDataSet(value = "datasets/it/update-skiresort.yml")
@@ -174,6 +178,7 @@ public class SkiresortRestApiIntegrationTest {
 
     @Nested
     class DeleteTest {
+
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
         @ExpectedDataSet(value = "datasets/it/delete-skiresort.yml")

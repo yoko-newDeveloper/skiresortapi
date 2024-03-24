@@ -32,6 +32,7 @@ class SkiresortServiceImplTest {
 
     @Nested
     class FindAllTest {
+
         @Test
         public void 全てのスキーリゾート情報を取得できること() {
 
@@ -54,6 +55,7 @@ class SkiresortServiceImplTest {
 
     @Nested // JUnit5におけるネストしたテスト
     class FindByIdTest { // テスト対象メソッド名でクラスを作成
+
         @Test
         public void 存在するスキーリゾートのIDを指定した時に正常データが返されること() {
             // doReturn -when :Mokietoの記述
@@ -82,6 +84,7 @@ class SkiresortServiceImplTest {
 
     @Nested
     class InsertSkiresortTest {
+
         @Test
         public void 新規のスキーリゾート情報を登録できること() {
             // skiresortCreateForm変数をインスタンス化して、それぞれの属性に値を設定
@@ -102,6 +105,7 @@ class SkiresortServiceImplTest {
 
     @Nested
     class UpdateSkiresortTest {
+
         @Test
         public void 指定したIDのスキーリゾート情報を更新できること() {
             // モック化:returnするSkiresortは更新前のデータを設定
@@ -136,6 +140,7 @@ class SkiresortServiceImplTest {
 
     @Nested
     class DeleteSkiresortTest {
+        
         @Test
         public void 指定したIDのスキーリゾート情報を削除できること() {
             doReturn(Optional.of(new Skiresort(1, "白馬乗鞍", "長野県", "初めてペンションに居候として山籠りし、初めて草大会に出場した思い出のゲレンデ"))).when(skiresortMapper).findById(1);
