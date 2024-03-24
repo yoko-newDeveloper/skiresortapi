@@ -84,7 +84,8 @@
 - `@Size`デフォルトメッセージ:"{min} から {max} の間のサイズにしてください"(半角スペース有)
 - `.extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)`
     - `extracting`:AssertJライブラリの一部で、リストやコレクションから特定の要素を抽出して検証する
-    - `violations`:リストの各要素に対して、ConstraintViolationオブジェクト(nameやarea)を文字列に変換し、ConstraintViolationオブジェクト(
+    - `violations`(検証エラーのリスト):リストの各要素に対して、ConstraintViolationオブジェクト(nameやarea)
+      を文字列に変換し、ConstraintViolationオブジェクト(
       バリデーションエラーが発生した際に生成されるオブジェクト)からエラーメッセージを取得する
     - `containsExactlyInAnyOrder`:期待されるプロパティパス(バリデーションエラーが発生した場所)、エラーメッセージと実際の結果が一致することを検証する
 - Formフィールドのアノテーション:messageは全てのアノテーションに書くか書かないかを統一すること
