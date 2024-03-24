@@ -161,6 +161,10 @@ GitHub Actionsでワークフローを自動化する
 
 - areaに関するバリデーション
 
+## ブランチ:feature_47/imperssionValidation
+
+- impressionに関するバリデーション
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
