@@ -17,6 +17,14 @@ public class Skiresort {
         this.impression = impression;
     }
 
+    // ID指定しないコンストラクタ
+    public Skiresort(String name, String area, String impression) {
+        this.id = 0;
+        this.name = name;
+        this.area = area;
+        this.impression = impression;
+    }
+
     public int getId() {
         return this.id;
     }

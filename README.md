@@ -165,6 +165,10 @@ GitHub Actionsでワークフローを自動化する
 
 - impressionに関するバリデーション
 
+## ブランチ:feature_49/ut-mapperTest-fix
+
+- insertテストに期待値を追記
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
