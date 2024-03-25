@@ -1,0 +1,17 @@
+skiresort:
+  - id: 1
+    name: "appi"
+    area: "iwate"
+    impression: "残雪で8月くらいまで営業している"
+  - id: 2
+    name: "zao"
+    area: "yamagata"
+    impression: "樹氷が絶景"
+  - id: 3
+    name: "hakubagoryu"
+    area: "nagano"
+    impression: "インストラクターデビューしたスキー場"
+  - id: 4
+    name: "yunomaru"
+    area: "nagano"
+    impression: "道路を渡ったところに急斜面がある"
