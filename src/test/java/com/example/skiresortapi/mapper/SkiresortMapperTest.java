@@ -63,6 +63,7 @@ class SkiresortMapperTest {
 
     @Nested
     class CreateSkiresortTest {
+
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         // IDは比較対象外
