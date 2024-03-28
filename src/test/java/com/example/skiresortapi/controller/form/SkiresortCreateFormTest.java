@@ -26,6 +26,7 @@ class SkiresortCreateFormTest {
 
     @Nested
     class SkiresortNameSizeTest {
+
         @Test
         public void nameが1文字未満である時バリデーションエラーとなること() {
 
@@ -87,6 +88,51 @@ class SkiresortCreateFormTest {
             SkiresortCreateForm createForm = new SkiresortCreateForm("　", "Canada", "The scenery was very beautiful");
             var violations = validator.validate(createForm);
             assertThat(violations).isEmpty();
+        }
+    }
+
+    @Nested
+    class AreaSizeTest {
+
+        @Test
+        public void areaが1文字未満である時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Thredbo Supertrail", "", "Australia's widest ski slope");
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(2);
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    // 特定の条件が順不要で一致することの検証
+                    .containsExactlyInAnyOrder(
+                            tuple("area", "空白は許可されていません"),
+                            tuple("area", "1 から 20 の間のサイズにしてください")
+                    );
+        }
+
+        @Test
+        public void areaが1文字である時バリデーションエラーとならないこと() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Thredbo Supertrail", "a", "Australia's widest ski slope");
+            var violations = validator.validate(createForm);
+            // エラーなしであることの検証
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void areaが20文字である時バリデーションエラーとならないこと() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Thredbo Supertrail", "12345678901234567890", "Australia's widest ski slope");
+            var violations = validator.validate(createForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void areaが21文字である時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Thredbo Supertrail", "123456789012345678901", "Australia's widest ski slope");
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(1);
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(
+                            tuple("area", "1 から 20 の間のサイズにしてください")
+                    );
         }
     }
 }
