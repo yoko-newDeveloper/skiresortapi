@@ -69,5 +69,24 @@ class SkiresortCreateFormTest {
         }
     }
 
+    @Nested
+    class NameNotBlankTest {
 
+        @Test
+        public void nameがブランクである時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm(" ", "Canada", "The scenery was very beautiful");
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(1);
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("name", "空白は許可されていません"));
+        }
+
+        @Test
+        public void nameが全角ブランクである時バリデーションエラーとならないこと() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("　", "Canada", "The scenery was very beautiful");
+            var violations = validator.validate(createForm);
+            assertThat(violations).isEmpty();
+        }
+    }
 }
