@@ -206,4 +206,33 @@ class SkiresortCreateFormTest {
                     .containsExactlyInAnyOrder(tuple("impression", "1 から 50 の間のサイズにしてください"));
         }
     }
+
+    @Nested
+    class ImpressionNotBlankTest {
+
+        @Test
+        public void impressionが半角ブランクである時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", " ");
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(1)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("impression", "空白は許可されていません"));
+        }
+
+        @Test
+        public void impressionがnullである時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", null);
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(1)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("impression", "空白は許可されていません"));
+        }
+
+        @Test
+        public void impressionが全角ブランクである時バリデーションエラーとならないこと() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", "　");
+            var violations = validator.validate(createForm);
+            assertThat(violations).isEmpty();
+        }
+    }
 }
