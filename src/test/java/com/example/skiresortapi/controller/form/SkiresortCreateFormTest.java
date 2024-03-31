@@ -166,4 +166,44 @@ class SkiresortCreateFormTest {
             assertThat(violations).isEmpty();
         }
     }
+
+    @Nested
+    class ImpressionSizeTest {
+
+        @Test
+        public void impressionが1文字未満である時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", "");
+            var violations = validator.validate(createForm);
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(
+                            tuple("impression", "空白は許可されていません"),
+                            tuple("impression", "1 から 50 の間のサイズにしてください")
+                    );
+        }
+
+        @Test
+        public void impressionが1文字である時バリデーションエラーとならないこと() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", "1");
+            var violations = validator.validate(createForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void impressionが50文字である時バリデーションエラーとならないこと() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", "12345678901234567890123456789012345678901234567890");
+            var violations = validator.validate(createForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void impressionが51文字である時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", "123456789012345678901234567890123456789012345678901");
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(1);
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("impression", "1 から 50 の間のサイズにしてください"));
+        }
+    }
 }
