@@ -18,7 +18,7 @@ class SkiresortCreateFormTest {
 
     // 一番最初に一度だけ実行される
     @BeforeAll
-    public static void setUpBalidation() {
+    public static void setUpValidator() {
         Locale.setDefault(Locale.JAPANESE);
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
@@ -43,7 +43,7 @@ class SkiresortCreateFormTest {
         }
 
         @Test
-        public void nameが1文字以上である時バリデーションエラーとならないこと() {
+        public void nameが1文字である時バリデーションエラーとならないこと() {
             SkiresortCreateForm createForm = new SkiresortCreateForm("a", "Canada", "The scenery was very beautiful");
             var violations = validator.validate(createForm);
             assertThat(violations).isEmpty();
@@ -59,11 +59,11 @@ class SkiresortCreateFormTest {
         @Test
         public void nameが21文字である時バリデーションエラーとなること() {
             SkiresortCreateForm createForm = new SkiresortCreateForm("aaaaaaaaaaaaaaaaaaaaa", "Canada", "The scenery was very beautiful");
-            var violations = validator.validate((createForm));
-            // バリデーションが1つ発生することの検証
+            var violations = validator.validate(createForm);
+            // バリデーションエラーが1つ発生することの検証
             assertThat(violations).hasSize(1);
             assertThat(violations)
-                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getPropertyPath)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
                     .containsExactlyInAnyOrder(
                             tuple("name", "1 から 20 の間のサイズにしてください")
                     );
@@ -74,8 +74,18 @@ class SkiresortCreateFormTest {
     class NameNotBlankTest {
 
         @Test
-        public void nameがブランクである時バリデーションエラーとなること() {
+        public void nameが半角ブランクである時バリデーションエラーとなること() {
             SkiresortCreateForm createForm = new SkiresortCreateForm(" ", "Canada", "The scenery was very beautiful");
+            var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(1);
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("name", "空白は許可されていません"));
+        }
+
+        @Test
+        public void nameがnullである時バリデーションエラーとなること() {
+            SkiresortCreateForm createForm = new SkiresortCreateForm(null, "Canada", "The scenery was very beautiful");
             var violations = validator.validate(createForm);
             assertThat(violations).hasSize(1);
             assertThat(violations)
@@ -146,11 +156,11 @@ class SkiresortCreateFormTest {
             assertThat(violations).hasSize(1);
             assertThat(violations)
                     .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
-                    .containsExactlyInAnyOrder(tuple("impression", "空白は許可されていません"));
+                    .containsExactlyInAnyOrder(tuple("area", "空白は許可されていません"));
         }
 
         @Test
-        public void areがnullである時バリデーションエラーとなること() {
+        public void areaがnullである時バリデーションエラーとなること() {
             SkiresortCreateForm createForm = new SkiresortCreateForm("Thredbo Supertrail", null, "Australia's widest ski slope");
             var violations = validator.validate(createForm);
             assertThat(violations).hasSize(1);
@@ -160,7 +170,7 @@ class SkiresortCreateFormTest {
         }
 
         @Test
-        public void areaが全角ブランクである場合バリデーションエラーとならないこと() {
+        public void areaが全角ブランクである時バリデーションエラーとならないこと() {
             SkiresortCreateForm createForm = new SkiresortCreateForm("Thredbo Supertrail", "　", "Australia's widest ski slope");
             var violations = validator.validate(createForm);
             assertThat(violations).isEmpty();
@@ -174,6 +184,7 @@ class SkiresortCreateFormTest {
         public void impressionが1文字未満である時バリデーションエラーとなること() {
             SkiresortCreateForm createForm = new SkiresortCreateForm("Mt.Hutt", "New Zealand", "");
             var violations = validator.validate(createForm);
+            assertThat(violations).hasSize(2);
             assertThat(violations)
                     .extracting(violation -> violation.getPropertyPath().toString(), ConstraintViolation::getMessage)
                     .containsExactlyInAnyOrder(
