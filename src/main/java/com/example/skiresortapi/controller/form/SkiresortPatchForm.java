@@ -1,17 +1,14 @@
 package com.example.skiresortapi.controller.form;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.AssertTrue;
 
-public class SkiresortUpdateForm {
+public class SkiresortPatchForm {
 
-    @NotBlank
     private final String name;
-    @NotBlank
     private String area;
-    @NotBlank
     private String impression;
 
-    public SkiresortUpdateForm(String name, String area, String impression) {
+    public SkiresortPatchForm(String name, String area, String impression) {
         this.name = name;
         this.area = area;
         this.impression = impression;
@@ -36,5 +33,11 @@ public class SkiresortUpdateForm {
 
     public void setImpression(String impression) {
         this.impression = impression;
+    }
+
+    @AssertTrue(message = "name, area, impressionのいずれかを入力してください")
+    public boolean isNameOrAreaOrImpression() {
+        // name,area,impressionの全てがnullまたは空文字または半角スペースの時にfalse(バリデーション)を返す
+        return (name != null && !name.isBlank()) || (area != null && !area.isBlank()) || (impression != null && !impression.isBlank());
     }
 }

@@ -1,7 +1,7 @@
 package com.example.skiresortapi.controller;
 
 import com.example.skiresortapi.controller.form.SkiresortCreateForm;
-import com.example.skiresortapi.controller.form.SkiresortUpdateForm;
+import com.example.skiresortapi.controller.form.SkiresortPatchForm;
 import com.example.skiresortapi.controller.response.SkiresortResponse;
 import com.example.skiresortapi.entity.Skiresort;
 import com.example.skiresortapi.service.SkiresortService;
@@ -54,8 +54,7 @@ public class SkiresortController {
     }
 
     @PatchMapping("/skiresorts/{id}")
-    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Valid SkiresortUpdateForm form) {
-
+    public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Valid SkiresortPatchForm form) {
         // id以外のSkiresortUpdateFormの情報を使用してレコードを更新する
         skiresortService.updateSkiresort(id, form.getName(), form.getArea(), form.getImpression());
         return ResponseEntity.ok(Map.of("message", "successfully update"));
