@@ -169,6 +169,11 @@ GitHub Actionsでワークフローを自動化する
 
 - insertテストに期待値を追記
 
+## ブランチ:feature_51/correlationRequiredValidation
+
+- SkiresortCreateForm:バリデーションテスト
+- SkiresortPatchForm:相関項目のチェックテスト
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
