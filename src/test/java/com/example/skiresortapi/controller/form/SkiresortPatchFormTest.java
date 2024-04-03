@@ -105,8 +105,46 @@ class SkiresortPatchFormTest {
 
             Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
             assertThat(violations).isEmpty();
+        }
+    }
 
+    @Nested
+    class EmptyTest {
+        public void nameとareaとimpressionが全て空文字の時バリデーションエラーとなること() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm(" ", " ", " ");
 
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).hasSize(1);
+            // 制約違反(ConstraintViolation)情報でどのプロパティに関連しているか、エラーメッセージが何かを検証する
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath(), ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(
+                            tuple("nameOrAreaOrImpression", "name, area, impressionのいずれかを入力してください")
+                    );
+        }
+
+        @Test
+        public void nameのみが空文字の時バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("", "Canada", "Ski the World Heritage Site of the Canadian Rockies");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void areaのみがnullの時バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("Lake Louise", "", "Ski the World Heritage Site of the Canadian Rockies");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void impressionのみがnullの時バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("Lake Louise", "Canada", "");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
         }
     }
 
