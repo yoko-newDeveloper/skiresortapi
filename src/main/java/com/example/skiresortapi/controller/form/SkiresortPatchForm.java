@@ -25,6 +25,11 @@ public class SkiresortPatchForm {
         return this.name;
     }
 
+    /**
+     * スキーリゾートのエリアを取得する
+     *
+     * @return スキーリゾートエリア
+     */
     public String getArea() {
         return this.area;
     }
@@ -33,6 +38,11 @@ public class SkiresortPatchForm {
         this.area = area;
     }
 
+    /**
+     * スキーリゾートに対する印象を取得する
+     *
+     * @return スキーリゾートの印象
+     */
     public String getImpression() {
         return this.impression;
     }
