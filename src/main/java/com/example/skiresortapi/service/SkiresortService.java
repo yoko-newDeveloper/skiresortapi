@@ -12,6 +12,14 @@ public interface SkiresortService {
 
     Skiresort createSkiresort(SkiresortCreateForm skiresortCreateForm);
 
+    /**
+     * 指定されたIDのスキーリゾートを更新する
+     *
+     * @param id
+     * @param name
+     * @param area
+     * @param impression
+     */
     void updateSkiresort(int id, String name, String area, String impression);
 
     void deleteSkiresort(int id);
