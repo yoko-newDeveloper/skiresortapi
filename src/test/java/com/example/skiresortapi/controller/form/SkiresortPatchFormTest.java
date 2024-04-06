@@ -174,10 +174,47 @@ class SkiresortPatchFormTest {
 
         @Test
         public void areaのみが半角スペースの場合バリデーションエラーとならないこと() {
-            SkiresortPatchForm patchForm = new SkiresortPatchForm("Lake Louise", "", "Ski the World Heritage Site of the Canadian Rockies");
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("Lake Louise", " ", "Ski the World Heritage Site of the Canadian Rockies");
 
             Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
             assertThat(violations).isEmpty();
+        }
+
+        @Test
+        public void impressionのみが半角スペースの場合バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("Lake Louise", "Canada", "");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
+        }
+    }
+
+    @Nested
+    class OkPatternTest {
+
+        @Test
+        void name以外がnullと空文字の時バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("Lake Louise", null, "");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        void area以外がnullと空文字の時バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm(null, "Canada", " ");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
+        }
+
+        @Test
+        void imperssion以外がnullと空文字の時バリデーションエラーとならないこと() {
+            SkiresortPatchForm patchForm = new SkiresortPatchForm("", " ", "Ski the World Heritage Site of the Canadian Rockies");
+
+            Set<ConstraintViolation<SkiresortPatchForm>> violations = validator.validate(patchForm);
+            assertThat(violations).isEmpty();
+
         }
     }
 
