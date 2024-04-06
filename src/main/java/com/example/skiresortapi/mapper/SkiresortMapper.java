@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface SkiresortMapper {
 
     /**
-     * 全てのスキーリゾートを取得するメソッド
+     * 全てのスキーリゾートを取得する
      *
      * @return スキーリゾート情報のリスト
      */
@@ -23,17 +23,17 @@ public interface SkiresortMapper {
     List<Skiresort> findAll();
 
     /**
-     * 指定したIDのスキーリゾート情報を取得するメソッド
+     * 指定したIDのスキーリゾート情報を取得する
      *
-     * @param id 取得したいスキーリゾートのID
-     * @return 取得対象のスキーリゾート情報
+     * @param id 取得するスキーリゾートのID
+     * @return 取得対象IDのスキーリゾート情報
      */
     @Select("SELECT * FROM skiresort WHERE id = #{id}")
     Optional<Skiresort> findById(int id);
 
 
     /**
-     * 新規スキーリゾートをデータベースに登録するメソッド
+     * 新規スキーリゾートをデータベースに登録する
      *
      * @param skiresort 登録するスキーリゾート情報
      */
@@ -43,7 +43,7 @@ public interface SkiresortMapper {
     void insertSkiresort(Skiresort skiresort);
 
     /**
-     * スキーリゾート情報を更新するメソッド
+     * スキーリゾート情報を更新する
      *
      * @param skiresort 更新するスキーリゾート情報
      */
@@ -51,7 +51,7 @@ public interface SkiresortMapper {
     void updateSkiresort(Skiresort skiresort);
 
     /**
-     * 指定したIDのスキーリゾート情報を削除するメソッド
+     * 指定したIDのスキーリゾート情報を削除する
      *
      * @param id 削除対象のスキーリゾート
      */
