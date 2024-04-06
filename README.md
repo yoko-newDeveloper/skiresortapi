@@ -176,6 +176,10 @@ GitHub Actionsでワークフローを自動化する
 - SkiresortPatchForm:更新時の相関項目のチェックテスト
     - 更新時にはname,area,impressionの全てを入力しなくてもバリデーションエラーとならないように実装
 
+## ブランチ:feature_53/addComment
+
+- メソッドにJavaDocコメントを追加
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |

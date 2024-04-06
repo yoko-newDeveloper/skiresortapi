@@ -14,20 +14,47 @@ import java.util.Optional;
 @Mapper
 public interface SkiresortMapper {
 
+    /**
+     * 全てのスキーリゾートを取得するメソッド
+     *
+     * @return スキーリゾート情報のリスト
+     */
     @Select("SELECT * FROM skiresort")
     List<Skiresort> findAll();
 
+    /**
+     * 指定したIDのスキーリゾート情報を取得するメソッド
+     *
+     * @param id 取得したいスキーリゾートのID
+     * @return 取得対象のスキーリゾート情報
+     */
     @Select("SELECT * FROM skiresort WHERE id = #{id}")
     Optional<Skiresort> findById(int id);
 
+
+    /**
+     * 新規スキーリゾートをデータベースに登録するメソッド
+     *
+     * @param skiresort 登録するスキーリゾート情報
+     */
     @Insert("INSERT INTO skiresort (id, name, area, impression) VALUES (#{id}, #{name}, #{area}, #{impression})")
     // idを自動生成する
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertSkiresort(Skiresort skiresort);
 
+    /**
+     * スキーリゾート情報を更新するメソッド
+     *
+     * @param skiresort 更新するスキーリゾート情報
+     */
     @Update("UPDATE skiresort SET name = #{name}, area = #{area}, impression = #{impression} WHERE id = #{id}")
     void updateSkiresort(Skiresort skiresort);
 
+    /**
+     * 指定したIDのスキーリゾート情報を削除するメソッド
+     *
+     * @param id 削除対象のスキーリゾート
+     */
     @Delete("DELETE skiresort FROM skiresort WHERE id = #{id}")
     void deleteSkiresort(int id);
 }
