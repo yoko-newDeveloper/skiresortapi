@@ -24,17 +24,34 @@ public class SkiresortServiceImpl implements SkiresortService {
         this.skiresortMapper = skiresortMapper;
     }
 
+    /**
+     * 全てのスキーリゾートを取得
+     *
+     * @return 取得したスキーリゾート
+     */
     @Override
     public List<Skiresort> findAll() {
         return skiresortMapper.findAll();
     }
 
+    /**
+     * 指定したIDのスキーリゾート情報を取得する
+     *
+     * @param id 取得したスキーリゾート情報のID
+     * @return スキーリゾート情報
+     */
     @Override
     public Skiresort findById(int id) {
         Optional<Skiresort> skiresort = this.skiresortMapper.findById(id);
         return skiresort.orElseThrow(() -> new ResourceNotFoundException("resource not found"));
     }
 
+    /**
+     * 新規スキーリゾートの登録
+     *
+     * @param skiresortCreateForm 登録するスキーリゾート情報のフォーム
+     * @return 登録したスキーリゾート
+     */
     @Override
     @Transactional
     public Skiresort createSkiresort(SkiresortCreateForm skiresortCreateForm) {
@@ -49,6 +66,14 @@ public class SkiresortServiceImpl implements SkiresortService {
         return skiresort;
     }
 
+    /**
+     * スキーリゾートを更新する
+     *
+     * @param id         更新するスキーリゾートID
+     * @param name       更新するスキーリゾート名
+     * @param area       更新するスキーリゾートエリア
+     * @param impression 更新するスキーリゾートの印象
+     */
     @Override
     @Transactional
     public void updateSkiresort(int id, String name, String area, String impression) {
@@ -60,6 +85,11 @@ public class SkiresortServiceImpl implements SkiresortService {
         this.skiresortMapper.updateSkiresort(skiresort);
     }
 
+    /**
+     * スキーリゾートを削除する
+     *
+     * @param id 削除対象スキーリゾートのID
+     */
     @Override
     @Transactional
     public void deleteSkiresort(int id) {
