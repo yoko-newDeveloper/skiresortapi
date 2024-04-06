@@ -72,3 +72,8 @@ return true;
     )
 );
 ```
+
+## SkiresortPatchFormTestの目的
+
+- データ更新時にname,area,impressionの全てを入力しなくて良いために作成
+- SkiresortPatchFormクラスを新規作成し、相関項目チェックできるように実装

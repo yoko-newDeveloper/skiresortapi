@@ -171,8 +171,10 @@ GitHub Actionsでワークフローを自動化する
 
 ## ブランチ:feature_51/correlationRequiredValidation
 
-- SkiresortCreateForm:バリデーションテスト
-- SkiresortPatchForm:相関項目のチェックテスト
+- SkiresortCreateForm:登録時のバリデーションテスト
+    - 登録時にはname,area,impression全ての項目の入力が必要である
+- SkiresortPatchForm:更新時の相関項目のチェックテスト
+    - 更新時にはname,area,impressionの全てを入力しなくてもバリデーションエラーとならないように実装
 
 ## 実装順理由
 
