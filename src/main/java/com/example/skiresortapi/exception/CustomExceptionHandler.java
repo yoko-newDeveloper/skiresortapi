@@ -17,7 +17,7 @@ import java.util.Map;
 
 // アプリケーション全体で発生するエラーをキャッチして処理するグローバルなエラーハンドリング
 @RestControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * メソッド引数が妥当出ない場合のエラーハンドリング
