@@ -180,6 +180,16 @@ GitHub Actionsでワークフローを自動化する
 
 - メソッドにJavaDocコメントを追加
 
+## ブランチ:feature_feature_55/eception-fix
+
+- exceptionディレクトリのConstomExceptionHandlerを2つのクラスに分割する
+
+## ブランチ:feature_57/errorMessage-fix
+
+- エラーメッセージ`resource not found`を具体的な名前`skiresort not found`に変更
+    - SkiresortRestApiIntegrationTest
+    - SkiresortServiceImpl
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |

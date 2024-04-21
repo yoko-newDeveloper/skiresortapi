@@ -167,7 +167,7 @@ public class SkiresortRestApiIntegrationTest {
                     {
                         "path": "/skiresorts/100",
                         "status": "404",
-                        "message": "resource not found",
+                        "message": "skiresort not found",
                         "timestamp": "2024-03-10T20:48.123456789+09:00[JST/Tokyo]",
                         "error": "Not Found"
                     }
@@ -207,7 +207,7 @@ public class SkiresortRestApiIntegrationTest {
                     {
                         "path": "/skiresorts/5",
                         "status": "404",
-                        "message": "resource not found",
+                        "message": "skiresort not found",
                         "timestamp": "2024-03-10T22:00:00:123456789+09:00[JST/Tokyo]",
                         "error": "Not Found"
                     }
