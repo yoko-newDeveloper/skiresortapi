@@ -77,7 +77,7 @@ class SkiresortServiceImplTest {
             assertThatThrownBy(() -> skiresortServiceImpl.findById(100)) // テスト対象メソッド
                     // throwされる例外がResourceNotFoundException（リソースがないことを通知する）を返す
                     .isInstanceOf(ResourceNotFoundException.class)
-                    .hasMessage("resource not found");
+                    .hasMessage("skiresort not found");
             verify(skiresortMapper, times(1)).findById(100);
         }
     }
@@ -133,14 +133,14 @@ class SkiresortServiceImplTest {
             // updateSkiresortメソッドを実行した時にthrowされる例外がResourceNotFoundExceptionクラスのインスタンスであることを期待している
             assertThatThrownBy(() -> skiresortServiceImpl.updateSkiresort(100, "Coronet Peak", "NZ", "海外遠征で初めて滑ったスキー場。すごく広くてクイーンズタウンからも近い")) // テスト対象メソッド
                     .isInstanceOf(ResourceNotFoundException.class)
-                    .hasMessage("resource not found");
+                    .hasMessage("skiresort not found");
             verify(skiresortMapper, times(1)).findById(100);
         }
     }
 
     @Nested
     class DeleteSkiresortTest {
-        
+
         @Test
         public void 指定したIDのスキーリゾート情報を削除できること() {
             doReturn(Optional.of(new Skiresort(1, "白馬乗鞍", "長野県", "初めてペンションに居候として山籠りし、初めて草大会に出場した思い出のゲレンデ"))).when(skiresortMapper).findById(1);

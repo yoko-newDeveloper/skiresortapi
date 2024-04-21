@@ -43,7 +43,7 @@ public class SkiresortServiceImpl implements SkiresortService {
     @Override
     public Skiresort findById(int id) {
         Optional<Skiresort> skiresort = this.skiresortMapper.findById(id);
-        return skiresort.orElseThrow(() -> new ResourceNotFoundException("resource not found"));
+        return skiresort.orElseThrow(() -> new ResourceNotFoundException("skiresort not found"));
     }
 
     /**
@@ -77,7 +77,7 @@ public class SkiresortServiceImpl implements SkiresortService {
     @Override
     @Transactional
     public void updateSkiresort(int id, String name, String area, String impression) {
-        Skiresort skiresort = this.skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("resource not found"));
+        Skiresort skiresort = this.skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("skiresort not found"));
         skiresort.setName(name);
         skiresort.setArea(area);
         skiresort.setImpression(impression);
@@ -95,7 +95,7 @@ public class SkiresortServiceImpl implements SkiresortService {
     public void deleteSkiresort(int id) {
         // 指定されたIDが見つからない場合に例外をスローする
         // skiresort変数に格納せずに、直接skiresortMapper.findById(id)の結果を返す
-        skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("resource not found"));
+        skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("skiresort not found"));
         skiresortMapper.deleteSkiresort(id);
     }
 }
