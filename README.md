@@ -3,6 +3,49 @@
 スキーリゾートにおける名称・エリア・特徴についてのCRUDアプリケーション及びテスト
 テストレポートは自動生成する
 
+## ディレクトリ構成
+
+```agsl
+.
+├── conf
+│   └── mysql
+│       └── my.cnf
+├── gradlew/wrapper
+├── sql
+│ └── 001-create-table-and-load-data.sql
+├── src
+├── Dockerfile
+├── docker-compose.yml
+└── build.gradle
+```
+
+## レイヤー構成
+
+```agsl
+.
+├── src/main/java/com.example.skiresortapi
+	├── controller
+	│   ├── SkiresortController
+	│   │	└──form
+	│   │	   └──SkiresortCreateForm
+	│   └── response
+	│	   └── SkiresortResponse
+	├── entity
+	│   └── Skiresort
+	├── exception
+	│   ├── CustomExceptionHandler
+	│   └── ResourceNotFoundException
+	│── mapper
+	│   └── SkiresortMapper
+	├── service
+	│   ├── SkiresortService
+	│   └── SkiresortServiceImpl
+	├── repository
+	│   └── SkiresortRepository
+	└── build.gradle
+ 
+```
+
 ## 存在しないidを指定した場合404エラーを返す
 
 ## 実装内容
@@ -189,6 +232,10 @@ GitHub Actionsでワークフローを自動化する
 - エラーメッセージ`resource not found`を具体的な名前`skiresort not found`に変更
     - SkiresortRestApiIntegrationTest
     - SkiresortServiceImpl
+
+## ブランチ:git checkout -b feature_59/add-repositoryDirectory
+
+- repositoryブランチを作成
 
 ## 実装順理由
 
