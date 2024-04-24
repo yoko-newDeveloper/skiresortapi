@@ -235,7 +235,7 @@ GitHub Actionsでワークフローを自動化する
 
 ## ブランチ:git checkout -b feature_59/add-repositoryDirectory
 
-- repositoryブランチを作成
+- repositoryディレクトリを作成
 
 ## 実装順理由
 
