@@ -11,6 +11,9 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * スキーリゾートMapper
+ */
 @Mapper
 public interface SkiresortMapper {
 

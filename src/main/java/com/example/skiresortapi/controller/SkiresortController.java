@@ -20,10 +20,18 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * スキーリゾートに関する情報を提供するController
+ */
 @RestController
 public class SkiresortController {
     private final SkiresortService skiresortService;
 
+    /**
+     * コンストラクタ
+     *
+     * @param skiresortService スキーリゾートServiceクラス
+     */
     public SkiresortController(SkiresortService skiresortService) {
         this.skiresortService = skiresortService;
     }

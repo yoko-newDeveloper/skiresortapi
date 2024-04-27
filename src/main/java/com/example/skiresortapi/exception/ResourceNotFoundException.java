@@ -2,11 +2,13 @@ package com.example.skiresortapi.exception;
 
 // リソースが見つからなかった時の例外クラスを作る
 public class ResourceNotFoundException extends RuntimeException {
+
+    /**
+     * デフォルトコンストラクタ
+     */
     public ResourceNotFoundException() {
         super();
     }
-
-    // 指定されたメッセージと原因を持つ例外を作成する
 
     /**
      * 指定されたメッセージを持つ例外を作成するコンストラクタ
@@ -18,8 +20,6 @@ public class ResourceNotFoundException extends RuntimeException {
         super(message, cause);
     }
 
-    // 指定されたメッセージを持つ例外を作成する
-
     /**
      * 指定されたメッセージを持つ例外を作成するコンストラクタ
      *
@@ -28,8 +28,6 @@ public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
         super(message);
     }
-
-    // 指定された原因を持つ例外を作成する
 
     /**
      * 指定された原因を持つ例外を作成するコンストラクタ

@@ -24,12 +24,18 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class) // JUnit5でMockitoを使うために必要
 class SkiresortServiceImplTest {
 
+    /**
+     * SkireesortServiceImplのテストクラス
+     */
     @InjectMocks // テスト対象
-    SkiresortServiceImpl skiresortServiceImpl;
+            SkiresortServiceImpl skiresortServiceImpl;
 
     @Mock // モック化(スタブ化)したいインスタンスに定義
     SkiresortMapper skiresortMapper;
 
+    /**
+     * 全てのスキーリゾート情報をテストするクラス
+     */
     @Nested
     class FindAllTest {
 
@@ -53,6 +59,9 @@ class SkiresortServiceImplTest {
         }
     }
 
+    /**
+     * スキーリゾートのIDを指定してテストするクラス
+     */
     @Nested // JUnit5におけるネストしたテスト
     class FindByIdTest { // テスト対象メソッド名でクラスを作成
 
@@ -82,6 +91,9 @@ class SkiresortServiceImplTest {
         }
     }
 
+    /**
+     * スキーリゾート情報を登録するテストのクラス
+     */
     @Nested
     class InsertSkiresortTest {
 
@@ -103,6 +115,9 @@ class SkiresortServiceImplTest {
         }
     }
 
+    /**
+     * スキーリゾート情報を更新をテストするクラス
+     */
     @Nested
     class UpdateSkiresortTest {
 
@@ -138,9 +153,15 @@ class SkiresortServiceImplTest {
         }
     }
 
+    /**
+     * スキーリゾート情報を削除するテストのクラス
+     */
     @Nested
     class DeleteSkiresortTest {
 
+        /**
+         * 指定したIDのスキーリゾート情報を削除できることのテスト
+         */
         @Test
         public void 指定したIDのスキーリゾート情報を削除できること() {
             doReturn(Optional.of(new Skiresort(1, "白馬乗鞍", "長野県", "初めてペンションに居候として山籠りし、初めて草大会に出場した思い出のゲレンデ"))).when(skiresortMapper).findById(1);

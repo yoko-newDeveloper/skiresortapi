@@ -2,6 +2,9 @@ package com.example.skiresortapi.controller.form;
 
 import jakarta.validation.constraints.AssertTrue;
 
+/**
+ * スキーリゾートの更新フォームのクラス
+ */
 public class SkiresortPatchForm {
 
     private final String name;

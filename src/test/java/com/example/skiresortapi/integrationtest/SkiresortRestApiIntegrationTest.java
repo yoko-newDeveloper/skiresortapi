@@ -23,17 +23,33 @@ import java.nio.charset.StandardCharsets;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * スキーリゾートの結合テスト
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 @DBRider
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SkiresortRestApiIntegrationTest {
 
+    /**
+     * MocMvcを自動注入
+     */
     @Autowired
     MockMvc mockMvc;
 
+    /**
+     * 全てのスキーリゾートを取得するテスト
+     */
     @Nested
     class ReadAllTest {
+
+        /**
+         * スキーリゾート全てを取得する
+         * テストデータセットをロードして、取得結果を比較する
+         *
+         * @throws Exception
+         */
 
         @Test
         @DataSet(value = "datasets/it/skiresort.yml")
