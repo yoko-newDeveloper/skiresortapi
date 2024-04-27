@@ -17,6 +17,10 @@ class SkiresortCreateFormTest {
     private static Validator validator;
 
     // 一番最初に一度だけ実行される
+
+    /**
+     * テスト実行前にバリデータをセットアップ
+     */
     @BeforeAll
     public static void setUpValidator() {
         Locale.setDefault(Locale.JAPANESE);
@@ -24,6 +28,9 @@ class SkiresortCreateFormTest {
         validator = factory.getValidator();
     }
 
+    /**
+     * スキーリゾート名文字数のテスト
+     */
     @Nested
     class SkiresortNameSizeTest {
 
@@ -70,6 +77,9 @@ class SkiresortCreateFormTest {
         }
     }
 
+    /**
+     * スキーリゾート名の空白チェックテスト
+     */
     @Nested
     class NameNotBlankTest {
 
@@ -101,6 +111,9 @@ class SkiresortCreateFormTest {
         }
     }
 
+    /**
+     * スキーリゾートエリアの文字数テスト
+     */
     @Nested
     class AreaSizeTest {
 
@@ -146,6 +159,9 @@ class SkiresortCreateFormTest {
         }
     }
 
+    /**
+     * スキーリゾートエリアの空白チェックテスト
+     */
     @Nested
     class AreaNotBlankTest {
 
@@ -176,6 +192,10 @@ class SkiresortCreateFormTest {
             assertThat(violations).isEmpty();
         }
     }
+
+    /**
+     * スキーリゾート印象の文字数テスト
+     */
 
     @Nested
     class ImpressionSizeTest {
@@ -217,6 +237,10 @@ class SkiresortCreateFormTest {
                     .containsExactlyInAnyOrder(tuple("impression", "1 から 50 の間のサイズにしてください"));
         }
     }
+
+    /**
+     * スキーリゾート印象の空白チェックテスト
+     */
 
     @Nested
     class ImpressionNotBlankTest {

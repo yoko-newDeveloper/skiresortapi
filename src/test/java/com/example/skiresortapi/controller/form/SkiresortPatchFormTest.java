@@ -13,17 +13,27 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
-
+/**
+ * スキーリゾート更新のテスト
+ */
 class SkiresortPatchFormTest {
 
     private static Validator validator;
 
+    // 一番最初に一度だけ実行される
+
+    /**
+     * テスト実行前にバリデータをセットアップする
+     */
     @BeforeAll
     public static void setUpValidator() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
+    /**
+     * null値テスト
+     */
     @Nested
     class NullTest {
 
@@ -66,6 +76,9 @@ class SkiresortPatchFormTest {
         }
     }
 
+    /**
+     * 空文字テスト
+     */
     @Nested
     class EmptyStringTest {
 
@@ -109,6 +122,9 @@ class SkiresortPatchFormTest {
         }
     }
 
+    /**
+     * 半角スペーステスト
+     */
     @Nested
     class BlankTest {
 
@@ -150,6 +166,9 @@ class SkiresortPatchFormTest {
         }
     }
 
+    /**
+     * 正常値テスト
+     */
     @Nested
     class OkPatternTest {
 

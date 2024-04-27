@@ -237,6 +237,10 @@ GitHub Actionsでワークフローを自動化する
 
 - repositoryディレクトリを作成
 
+## ブランチ:feature_63/add-classComment
+
+- クラスコメント、JavaDocコメントを追加
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |

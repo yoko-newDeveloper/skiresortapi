@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * スキーリゾートを表すEitityクラス
+ */
 @Entity
 @EqualsAndHashCode
 @NoArgsConstructor

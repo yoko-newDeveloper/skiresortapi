@@ -5,6 +5,9 @@ import com.example.skiresortapi.entity.Skiresort;
 
 import java.util.List;
 
+/**
+ * スキーリゾートに関するサービスを提供するインターフェース
+ */
 public interface SkiresortService {
     List<Skiresort> findAll();
 

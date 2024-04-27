@@ -3,6 +3,9 @@ package com.example.skiresortapi.controller.form;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+/**
+ * スキーリゾートを登録フォームクラス
+ */
 public class SkiresortCreateForm {
 
     @Size(min = 1, max = 20)

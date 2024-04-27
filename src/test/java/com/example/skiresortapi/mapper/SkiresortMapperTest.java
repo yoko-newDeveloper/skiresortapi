@@ -26,6 +26,9 @@ class SkiresortMapperTest {
     @Nested
     class FindAllTest {
 
+        /**
+         * 全てのスキーリゾート情報が取得できること
+         */
         @Test
         @DataSet(value = "datasets/ut/skiresort.yml")
         @Transactional
@@ -49,6 +52,9 @@ class SkiresortMapperTest {
         }
     }
 
+    /**
+     * SkiresortMapperのFindByIdメソッドをテストするクラス
+     */
     @Nested
     class FindByIdTest {
 
@@ -61,6 +67,9 @@ class SkiresortMapperTest {
         }
     }
 
+    /**
+     * スキーリゾートの更新に関するテストクラス
+     */
     @Nested
     class CreateSkiresortTest {
 
@@ -75,6 +84,10 @@ class SkiresortMapperTest {
             skiresortMapper.insertSkiresort(skiresort);
         }
     }
+
+    /**
+     * スキーリゾートの更新に関するテストクラス
+     */
 
     @Nested
     class UpdateSkiresortTest {
@@ -98,6 +111,9 @@ class SkiresortMapperTest {
         }
     }
 
+    /**
+     * スキーリゾートの削除に関するテストクラス
+     */
     @Nested
     class DeleteSkiresortTest {
 
