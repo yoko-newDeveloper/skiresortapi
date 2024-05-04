@@ -50,12 +50,13 @@
 30. [repositoryクラスを作成](#repositoryクラスを作成)
 31. [クラスコメント、JavaDocコメントを追加](#クラスコメントjavadocコメントを追加)
 32. [READMEを整理](#readmeを整理)
+33. [XMLファイルを追加](#Mapper.xmlファイルを追加 )
 
 ...
 
 ## ディレクトリ構成
 
-```agsl
+```
 .
 ├── conf
 │   └── mysql
@@ -65,13 +66,12 @@
 │ └── 001-create-table-and-load-data.sql
 ├── src
 ├── Dockerfile
-├── docker-compose.yml
-└── build.gradle
+└── docker-compose.yml
 ```
 
 ## レイヤー構成
 
-```agsl
+```
 .
 ├── src/main/java/com.example.skiresortapi
 	├── controller
@@ -92,7 +92,9 @@
 	│   └── SkiresortServiceImpl
 	├── repository
 	│   └── SkiresortRepository
-	└── build.gradle
+	└── scr/main/resources
+	    └── com/examplt/skiresortapi/mapper/SkiresortMapper.xml
+       
  
 ```
 
@@ -133,6 +135,7 @@
 | feature_61/add-repositoryClass              | repositoryクラスを作成                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | feature_63/add-classComment                 | クラスコメント、JavaDocコメントを追加                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | feature_65/organizeReadme                   | READMEを整理                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| feature_67/xmlFile                          | Mapper.xmlファイルを追加                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## 実装順理由
 
