@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * スキーリゾートを表すEitityクラス
+ * スキーリゾートを表すEntityクラス
  */
 @Entity
 @EqualsAndHashCode
