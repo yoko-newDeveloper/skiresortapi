@@ -1,6 +1,8 @@
-# skiresortapiアプリケーション概要
+# スキーリゾートアプリケーション
 
-このアプリケーションは、の情報を管理するためのCRUDアプリケーションです。<br>
+## 概要
+
+このアプリケーションは、スキーリゾートの情報を管理するためのCRUDアプリケーションです。<br>
 名称、エリア、特徴などの情報を登録、更新、削除することができます。
 
 - データベース周りの作成
@@ -15,6 +17,20 @@
 - テストレポートの自動生成
 
 更に、スキーリゾートの情報を正確に管理し、適切なバリデーションを行うことでデータの信頼性を高めることができます。
+
+---
+
+## 使用技術
+
+- Java
+- SpringBoot
+- MyBatis
+- MySQL
+- Docker
+- CI(GitHub Actions)
+- 自動テスト
+
+---
 
 ## 目次
 
@@ -52,7 +68,7 @@
 32. [READMEを整理](#readmeを整理)
 33. [XMLファイルを追加](#Mapper.xmlファイルを追加 )
 
-...
+---
 
 ## ディレクトリ構成
 
@@ -98,6 +114,28 @@
  
 ```
 
+---
+
+## 設計書
+
+### クラス図
+
+![453F74DC-CE58-4EE1-8050-AF2C8EB74298_1_201_a.jpeg](..%2F..%2FPictures%2F%E5%86%99%E7%9C%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA.photoslibrary%2Fresources%2Frenders%2F4%2F453F74DC-CE58-4EE1-8050-AF2C8EB74298_1_201_a.jpeg)
+
+### シーケンス図
+
+![2BEC7F95-38F0-45C4-8A2C-9D6B75DA8B99_1_201_a.jpeg](..%2F..%2FPictures%2F%E5%86%99%E7%9C%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA.photoslibrary%2Fresources%2Frenders%2F2%2F2BEC7F95-38F0-45C4-8A2C-9D6B75DA8B99_1_201_a.jpeg)
+
+### E-R図
+
+![5806B313-E683-4B24-BC2C-7621F8196985_1_201_a.jpeg](..%2F..%2FPictures%2F%E5%86%99%E7%9C%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA.photoslibrary%2Fresources%2Frenders%2F5%2F5806B313-E683-4B24-BC2C-7621F8196985_1_201_a.jpeg)
+
+### テーブル定義書
+
+![D1558462-F38F-4D56-B74C-B7DB7501E2F0_1_201_a.jpeg](..%2F..%2FPictures%2F%E5%86%99%E7%9C%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA.photoslibrary%2Fresources%2Frenders%2FD%2FD1558462-F38F-4D56-B74C-B7DB7501E2F0_1_201_a.jpeg)
+
+---
+
 ## 実装内容
 
 | ブランチ名                                       | 機能                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -137,6 +175,8 @@
 | feature_65/organizeReadme                   | READMEを整理                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | feature_67/xmlFile                          | Mapper.xmlファイルを追加                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
+---
+
 ## 実装順理由
 
 | 順番 | 機能                 | 理由                                                  |
@@ -147,6 +187,8 @@
 | 4  | Update             | Createした仮データを完成させるため                                |
 | 5  | nameのErrorHandling | 早い段階で実装すべきだが、Update作成後にテストする必要があるため                 |
 | 6  | Delete             | 実装予定機能が完了してからDeleteするため                             |
+
+---
 
 ## curlコマンド
 
@@ -191,6 +233,8 @@ curl -i -X POST -H "Content-Type: application/json" -d '{
 
 `% curl -i -X DELETE http://localhost:8080/skiresorts/6`
 
+---
+
 ### 例外確認
 
 - 存在しないID99を指定
@@ -211,6 +255,8 @@ curl -X PATCH -H "Content-Type: application/json" -d '{
 }' http://localhost:8080/skiresorts/10 -i
 ```
 
+---
+
 ## 動作確認ポイント
 
 | 項目           | レスポンス                |
@@ -221,6 +267,8 @@ curl -X PATCH -H "Content-Type: application/json" -d '{
 | message      | "resource not found" |
 | status       | "404"                |
 | path         | "99"/"55"            |
+
+---
 
 ## 動作確認キャプチャ
 
