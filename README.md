@@ -106,8 +106,6 @@
 	├── service
 	│   ├── SkiresortService
 	│   └── SkiresortServiceImpl
-	├── repository
-	│   └── SkiresortRepository
 	└── scr/main/resources
 	    └── com/examplt/skiresortapi/mapper/SkiresortMapper.xml
        
@@ -128,7 +126,7 @@
 
 ### E-R図
 
-![5806B313-E683-4B24-BC2C-7621F8196985_1_201_a.jpeg](..%2F..%2FPictures%2F%E5%86%99%E7%9C%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA.photoslibrary%2Fresources%2Frenders%2F5%2F5806B313-E683-4B24-BC2C-7621F8196985_1_201_a.jpeg)
+![48B355A4-C8C5-485F-8670-8B256011B023_1_201_a.jpeg](..%2F..%2FPictures%2F%E5%86%99%E7%9C%9F%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA.photoslibrary%2Fresources%2Frenders%2F4%2F48B355A4-C8C5-485F-8670-8B256011B023_1_201_a.jpeg)
 
 ### テーブル定義書
 
