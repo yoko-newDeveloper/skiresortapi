@@ -89,7 +89,7 @@ public class SkiresortController {
     @PatchMapping("/skiresorts/{id}")
     public ResponseEntity<Map<String, String>> update(@PathVariable("id") int id, @RequestBody @Valid SkiresortPatchForm form) {
         // id以外のSkiresortUpdateFormの情報を使用してレコードを更新する
-        skiresortService.updateSkiresort(id, form.getName(), form.getArea(), form.getImpression());
+        skiresortService.updateSkiresort(id, form.getName(), form.getAreaId(), form.getImpressionId());
         return ResponseEntity.ok(Map.of("message", "successfully update"));
     }
 

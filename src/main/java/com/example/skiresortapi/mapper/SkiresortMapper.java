@@ -18,29 +18,38 @@ import java.util.Optional;
 public interface SkiresortMapper {
 
     /**
-     * 全てのスキーリゾートを取得する
+     * 全てのスキーリゾート情報の取得
      *
      * @return スキーリゾート情報のリスト
      */
-    @Select("SELECT * FROM skiresort")
+    @Select("SELECT skiresort.id, skiresort.name, area.id as area_id, area.name as area_name, " +
+            "impression.id as impression_id, impression.description as impression_description " +
+            "FROM skiresort " +
+            "JOIN area ON skiresort.area_id = area.id " +
+            "JOIN impression ON skiresort.impression_id = impression_id")
     List<Skiresort> findAll();
 
     /**
      * 指定したIDのスキーリゾート情報を取得する
      *
      * @param id 取得するスキーリゾートのID
-     * @return 取得対象IDのスキーリゾート情報
+     * @return 取得対象のスキーリゾート情報
      */
-    @Select("SELECT * FROM skiresort WHERE id = #{id}")
+    @Select("SELECT skiresort.id, skiresort.name, area.id impression.id, impression.description " +
+            "impression.id as impression_id, impression.description as impression_decription " +
+            "FROM skiresort " +
+            "JOIN area ON skiresort.area_id = area.id " +
+            "JOIN impression ON skiresort.impression_id = impression.id " +
+            "WHERE skiresort.id = #{id}")
     Optional<Skiresort> findById(int id);
-
 
     /**
      * 新規スキーリゾートをデータベースに登録する
      *
      * @param skiresort 登録するスキーリゾート情報
      */
-    @Insert("INSERT INTO skiresort (id, name, area, impression) VALUES (#{id}, #{name}, #{area}, #{impression})")
+    @Insert("INSERT INTO skiresort (id, name, area_id, impression_id) " +
+            "VALUES (#{name}, #{area.id}, #{impression.id})")
     // idを自動生成する
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insertSkiresort(Skiresort skiresort);
@@ -50,7 +59,8 @@ public interface SkiresortMapper {
      *
      * @param skiresort 更新するスキーリゾート情報
      */
-    @Update("UPDATE skiresort SET name = #{name}, area = #{area}, impression = #{impression} WHERE id = #{id}")
+    @Update("UPDATE skiresort SET name = #{name}, area_id = #{area.id}, impression_id = #{impression.id} " +
+            "WHERE id = #{id}")
     void updateSkiresort(Skiresort skiresort);
 
     /**

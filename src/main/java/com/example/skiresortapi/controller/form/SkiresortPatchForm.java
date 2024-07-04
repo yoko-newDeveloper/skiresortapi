@@ -8,13 +8,13 @@ import jakarta.validation.constraints.AssertTrue;
 public class SkiresortPatchForm {
 
     private final String name;
-    private String area;
-    private String impression;
+    private int areaId;
+    private int impressionId;
 
-    public SkiresortPatchForm(String name, String area, String impression) {
+    public SkiresortPatchForm(String name, int areaId, int impressionId) {
         this.name = name;
-        this.area = area;
-        this.impression = impression;
+        this.areaId = areaId;
+        this.impressionId = impressionId;
     }
 
     // skiresortUpdateFormクラスのインスタンスからidを取得するため引数なし
@@ -29,39 +29,39 @@ public class SkiresortPatchForm {
     }
 
     /**
-     * スキーリゾートのエリアを取得する
+     * スキーリゾートのエリアIDを取得する
      *
      * @return スキーリゾートエリア
      */
-    public String getArea() {
-        return this.area;
+    public int getAreaId() {
+        return this.areaId;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setAreaId(int areaId) {
+        this.areaId = areaId;
     }
 
     /**
-     * スキーリゾートに対する印象を取得する
+     * スキーリゾートに対する印象IDを取得する
      *
-     * @return スキーリゾートの印象
+     * @return スキーリゾートの印象ID
      */
-    public String getImpression() {
-        return this.impression;
+    public int getImpressionId() {
+        return this.impressionId;
     }
 
-    public void setImpression(String impression) {
-        this.impression = impression;
+    public void setImpressionId(int impressionId) {
+        this.impressionId = impressionId;
     }
 
     /**
-     * @AssertTrue:相関項目のチェック
+     * @AssertTrue:相関項目のチェック(name,areaId,impressionIdのいずれかが入力されていることを確認する)
      * @return:falseの際にバリデーションを返す
      */
-    @AssertTrue(message = "name, area, impressionのいずれかを入力してください")
+    @AssertTrue(message = "name, areaId, impressionIdのいずれかを入力してください")
     public boolean isNameOrAreaOrImpression() {
-        // name,area,impressionの全てがnullまたは空文字または半角スペースの時にfalse(バリデーション)を返す
-        return isNotBlank(this.name) || isNotBlank(this.area) || isNotBlank(this.impression);
+        // nameが空白でない、またはareaIdが0より大きい、またはimpressionIdが0より大きい場合にtrueを返す
+        return isNotBlank(this.name) || this.areaId > 0 || impressionId > 0;
     }
 
     /**

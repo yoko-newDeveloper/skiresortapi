@@ -1,7 +1,9 @@
 package com.example.skiresortapi.controller.form;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 
 /**
  * スキーリゾートを登録フォームクラス
@@ -12,18 +14,16 @@ public class SkiresortCreateForm {
     @NotBlank
     private String name;
 
-    @Size(min = 1, max = 20)
-    @NotBlank
-    private String area;
+    @NotNull
+    private int areaId;
 
-    @Size(min = 1, max = 50)
-    @NotBlank
-    private String impression;
+    @NotNull
+    private int impressionId;
 
-    public SkiresortCreateForm(String name, String area, String impression) {
+    public SkiresortCreateForm(String name, int areaId, int impressionId) {
         this.name = name;
-        this.area = area;
-        this.impression = impression;
+        this.areaId = areaId;
+        this.impressionId = impressionId;
     }
 
     /**
@@ -40,29 +40,29 @@ public class SkiresortCreateForm {
     }
 
     /**
-     * スキーリゾートのエリアを取得する
+     * スキーリゾートのエリアIDを取得する
      *
-     * @return スキーリゾートのエリア
+     * @return スキーリゾートのエリアID
      */
-    public String getArea() {
-        return area;
+    public int getAreaId() {
+        return areaId;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setAreaId(int areaId) {
+        this.areaId = areaId;
     }
 
     /**
-     * スキーリゾートの印象を取得する
+     * スキーリゾートの印象IDを取得する
      *
-     * @return スキーリゾートの印象
+     * @return スキーリゾートの印象ID
      */
-    public String getImpression() {
-        return this.impression;
+    public int getImpressionId() {
+        return this.impressionId;
     }
 
-    public void setImpression(String impression) {
+    public void setImpressionId(int impressionId) {
 
-        this.impression = impression;
+        this.impressionId = impressionId;
     }
 }

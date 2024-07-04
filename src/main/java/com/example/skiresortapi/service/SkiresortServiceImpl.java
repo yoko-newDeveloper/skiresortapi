@@ -1,25 +1,23 @@
 package com.example.skiresortapi.service;
 
-import com.example.skiresortapi.controller.form.SkiresortCreateForm;
 import com.example.skiresortapi.entity.Skiresort;
-import com.example.skiresortapi.exception.ResourceNotFoundException;
 import com.example.skiresortapi.mapper.SkiresortMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * スキーリゾートService
+ * スキーリゾートServiceを提供する実装クラス
  */
 @Service
 public class SkiresortServiceImpl implements SkiresortService {
 
-    // field(MapperをServiceで使えるようにする)
+    // スキーリゾートのデータベース操作を行うMapper
     private final SkiresortMapper skiresortMapper;
 
-    // constructor(MapperをServiceで使えるようにする)
+    @Autowired
     public SkiresortServiceImpl(SkiresortMapper skiresortMapper) {
         this.skiresortMapper = skiresortMapper;
     }
@@ -27,7 +25,7 @@ public class SkiresortServiceImpl implements SkiresortService {
     /**
      * 全てのスキーリゾートを取得
      *
-     * @return 取得したスキーリゾート
+     * @return スキーリゾート情報のリスト
      */
     @Override
     public List<Skiresort> findAll() {
@@ -35,67 +33,43 @@ public class SkiresortServiceImpl implements SkiresortService {
     }
 
     /**
-     * 指定したIDのスキーリゾート情報を取得する
+     * 指定したIDのスキーリゾート情報を取得
      *
-     * @param id 取得したスキーリゾート情報のID
-     * @return スキーリゾート情報
+     * @param id 取得するスキーリゾート情報のID
+     * @return 取得対象IDのスキーリゾート情報
      */
     @Override
-    public Skiresort findById(int id) {
-        Optional<Skiresort> skiresort = this.skiresortMapper.findById(id);
-        return skiresort.orElseThrow(() -> new ResourceNotFoundException("skiresort not found"));
+    public Optional<Skiresort> findById(int id) {
+        return skiresortMapper.findById(id);
     }
 
     /**
-     * 新規スキーリゾートの登録
+     * 新規スキーリゾート情報をデータベースに登録
      *
-     * @param skiresortCreateForm 登録するスキーリゾート情報のフォーム
-     * @return 登録したスキーリゾート
+     * @param skiresort 登録するスキーリゾート情報
      */
     @Override
-    @Transactional
-    public Skiresort createSkiresort(SkiresortCreateForm skiresortCreateForm) {
-        Skiresort skiresort = new Skiresort(
-                0, // idの仮初期値として設定
-                skiresortCreateForm.getName(),
-                skiresortCreateForm.getArea(),
-                skiresortCreateForm.getImpression()
-        );
-
+    public void insertSkiresort(Skiresort skiresort) {
         skiresortMapper.insertSkiresort(skiresort);
-        return skiresort;
     }
 
     /**
-     * スキーリゾートを更新する
+     * スキーリゾート情報の更新
      *
-     * @param id         更新するスキーリゾートID
-     * @param name       更新するスキーリゾート名
-     * @param area       更新するスキーリゾートエリア
-     * @param impression 更新するスキーリゾートの印象
+     * @param skiresort 更新するスキーリゾート情報
      */
     @Override
-    @Transactional
-    public void updateSkiresort(int id, String name, String area, String impression) {
-        Skiresort skiresort = this.skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("skiresort not found"));
-        skiresort.setName(name);
-        skiresort.setArea(area);
-        skiresort.setImpression(impression);
-
-        this.skiresortMapper.updateSkiresort(skiresort);
+    public void updateSkiresort(Skiresort skiresort) {
+        skiresortMapper.updateSkiresort(skiresort);
     }
 
     /**
-     * スキーリゾートを削除する
+     * スキーリゾート情報の削除
      *
-     * @param id 削除対象スキーリゾートのID
+     * @param id 削除対象のスキーリゾート
      */
     @Override
-    @Transactional
     public void deleteSkiresort(int id) {
-        // 指定されたIDが見つからない場合に例外をスローする
-        // skiresort変数に格納せずに、直接skiresortMapper.findById(id)の結果を返す
-        skiresortMapper.findById(id).orElseThrow(() -> new ResourceNotFoundException("skiresort not found"));
         skiresortMapper.deleteSkiresort(id);
     }
 }

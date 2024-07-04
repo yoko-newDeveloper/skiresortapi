@@ -23,7 +23,7 @@ public interface SkiresortService {
      * @param area
      * @param impression
      */
-    void updateSkiresort(int id, String name, String area, String impression);
+    void updateSkiresort(int id, String name, int areaId, int impressionId);
 
     void deleteSkiresort(int id);
 }
